@@ -1631,66 +1631,275 @@ html {
    RESPONSIVE DESIGN & MEDIA QUERIES
    ========================================== */
 
+/* Global Fluid Typography Adjustments */
+.hero-title {
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    line-height: 1.2;
+}
+.section-title, 
+.faculty-heading, 
+.contact-heading, 
+.certificate-heading {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+}
+.hero-text {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+}
+
+/* Floating animation for Hero Image on desktop */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+@media (min-width: 992px) {
+    .hero-img {
+        animation: float 4s ease-in-out infinite;
+    }
+}
+
 /* Tablets & Small Desktops (max-width: 991px) */
 @media (max-width: 991px) {
-    .hero-title {
-        font-size: 42px;
+    /* Premium Collapsed Navbar styling */
+    .custom-navbar {
+        background: rgba(0, 0, 0, 0.95) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 215, 0, 0.1) !important;
+        padding: 12px 0 !important;
     }
-    .hero-text {
-        font-size: 16px;
+    
+    .navbar-toggler {
+        border: 1px solid rgba(255, 215, 0, 0.4) !important;
+        padding: 6px 10px !important;
+        border-radius: 8px !important;
+        background: rgba(255, 215, 0, 0.05) !important;
+        outline: none !important;
+        box-shadow: none !important;
+        transition: all 0.3s ease;
     }
-    .section-title {
-        font-size: 32px;
+    .navbar-toggler:focus {
+        box-shadow: 0 0 12px rgba(255, 215, 0, 0.4) !important;
     }
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 215, 0, 0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+
+    .navbar-collapse {
+        background: rgba(10, 10, 10, 0.98) !important;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 215, 0, 0.15) !important;
+        border-radius: 16px;
+        margin-top: 15px;
+        padding: 20px !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.05);
+        animation: menuSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    
+    @keyframes menuSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .navbar-nav {
+        padding-top: 5px;
+    }
+    
+    .nav-item {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .nav-link {
+        margin-left: 0 !important;
+        padding: 10px 16px !important;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        text-align: left !important;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .nav-link::after {
+        content: '→';
+        opacity: 0;
+        transform: translateX(-5px);
+        transition: all 0.3s ease;
+        color: gold;
+    }
+    .nav-link:hover::after {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .nav-link:hover, .nav-link.active {
+        background: rgba(255, 215, 0, 0.05) !important;
+        color: gold !important;
+        padding-left: 20px !important;
+    }
+
+    /* Style dynamic navbar buttons on mobile */
+    .nav-item a[href="login.html"],
+    .nav-item a.nav-link-login {
+        border: 1.5px solid gold !important;
+        color: gold !important;
+        text-align: center !important;
+        justify-content: center !important;
+        margin-top: 15px !important;
+        font-weight: 600 !important;
+        border-radius: 30px !important;
+        border-bottom: 1.5px solid gold !important;
+    }
+    .nav-item a[href="login.html"]::after,
+    .nav-item a.nav-link-login::after {
+        display: none !important;
+    }
+    .nav-item a[href="login.html"]:hover,
+    .nav-item a.nav-link-login:hover {
+        background: gold !important;
+        color: black !important;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .nav-item a[href="register.html"],
+    .nav-item a.nav-link-register {
+        background: gold !important;
+        color: black !important;
+        text-align: center !important;
+        justify-content: center !important;
+        margin-top: 8px !important;
+        font-weight: 600 !important;
+        border-radius: 30px !important;
+        border: 1.5px solid gold !important;
+    }
+    .nav-item a[href="register.html"]::after,
+    .nav-item a.nav-link-register::after {
+        display: none !important;
+    }
+    .nav-item a[href="register.html"]:hover,
+    .nav-item a.nav-link-register:hover {
+        background: white !important;
+        border-color: white !important;
+        color: black !important;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-item a.nav-link-dashboard {
+        background: gold !important;
+        color: black !important;
+        text-align: center !important;
+        justify-content: center !important;
+        margin-top: 15px !important;
+        font-weight: 600 !important;
+        border-radius: 30px !important;
+        border: 1.5px solid gold !important;
+    }
+    .nav-item a.nav-link-dashboard::after {
+        display: none !important;
+    }
+    .nav-item a.nav-link-dashboard:hover {
+        background: white !important;
+        border-color: white !important;
+        color: black !important;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-item a.nav-link-logout {
+        border: 1.5px solid #ff4d4d !important;
+        color: #ff4d4d !important;
+        text-align: center !important;
+        justify-content: center !important;
+        margin-top: 8px !important;
+        font-weight: 600 !important;
+        border-radius: 30px !important;
+        border-bottom: 1.5px solid #ff4d4d !important;
+    }
+    .nav-item a.nav-link-logout::after {
+        display: none !important;
+    }
+    .nav-item a.nav-link-logout:hover {
+        background: #ff4d4d !important;
+        color: black !important;
+        box-shadow: 0 0 15px rgba(255, 77, 77, 0.3);
+    }
+
+    /* Auth Box Stacking Overrides */
     .login-section {
         height: auto;
         min-height: 100vh;
-        padding: 50px 15px;
+        padding: 60px 15px;
     }
     .login-box {
-        max-width: 600px;
+        flex-direction: column !important;
+        max-width: 500px !important;
+        margin: 0 auto !important;
+        border-radius: 24px !important;
+        overflow: hidden !important;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 215, 0, 0.2) !important;
     }
     .login-left {
-        padding: 40px 30px;
+        width: 100% !important;
+        padding: 40px 30px !important;
+        text-align: center !important;
+        background: rgba(255, 215, 0, 0.02) !important;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.1) !important;
     }
     .login-left h1 {
-        font-size: 40px;
+        font-size: 36px;
     }
     .login-right {
-        padding: 40px 30px;
+        width: 100% !important;
+        padding: 40px 30px !important;
     }
     .login-right h2 {
-        font-size: 32px;
+        font-size: 28px;
     }
 }
 
 /* Mobile Devices (max-width: 767px) */
 @media (max-width: 767px) {
-    /* Navbar styling on mobile */
     .navbar-brand {
         font-size: 22px;
-    }
-    .nav-link {
-        margin-left: 0;
-        padding: 10px 0;
-        text-align: center;
     }
     
     /* Hero Section */
     .hero-section {
-        padding-top: 60px;
+        padding-top: 90px;
         text-align: center;
-    }
-    .hero-title {
-        font-size: 32px;
-        line-height: 1.2;
+        min-height: auto !important;
+        padding-bottom: 50px;
     }
     .hero-img {
         width: 100%;
-        margin-top: 30px;
+        max-width: 380px;
+        margin: 40px auto 0 auto;
+    }
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 320px;
+        margin: 25px auto 0 auto;
+    }
+    .hero-buttons .btn {
+        width: 100% !important;
+        margin-right: 0 !important;
+        margin-bottom: 0 !important;
+        padding: 12px 20px !important;
+        font-size: 16px !important;
     }
     
-    /* General section paddings */
+    /* Section Spacing & Margins */
     .about-section, 
     .courses-section, 
     .faculty-section, 
@@ -1703,38 +1912,33 @@ html {
         padding: 50px 0 !important;
     }
     
-    .section-title, 
-    .faculty-heading, 
-    .contact-heading, 
-    .certificate-heading {
-        font-size: 28px;
-        margin-bottom: 25px;
-    }
-    
-    /* Stats box padding */
     .stats-box {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+        padding: 20px;
+    }
+    .stats-box h3 {
+        font-size: 28px;
     }
     
-    /* Faculty & testimonial card formatting */
+    /* Card layouts */
     .faculty-card, .testimonial-card, .certificate-card {
-        padding: 25px 15px;
+        padding: 25px 20px;
     }
-    .testimonial-card img {
-        width: 90px;
-        height: 90px;
+    .faculty-card img {
+        width: 120px;
+        height: 120px;
     }
     
-    /* Contact section info cards stacking */
+    /* Contact Page adjustment */
     .contact-info {
         padding: 25px 20px;
         margin-bottom: 30px;
     }
     .contact-form-box {
-        padding: 25px 20px;
+        padding: 30px 20px;
     }
     
-    /* DASHBOARD LAYOUT RESPONSIVENESS */
+    /* Dashboard & Sidebar */
     .dashboard-container {
         flex-direction: column;
     }
@@ -1747,6 +1951,7 @@ html {
     .logo {
         margin-bottom: 20px;
         font-size: 28px;
+        text-align: center;
     }
     .sidebar ul {
         display: flex;
@@ -1757,37 +1962,36 @@ html {
     }
     .sidebar ul li {
         margin-bottom: 0;
-        padding: 10px 12px;
+        padding: 10px 14px;
         font-size: 13px;
         flex-grow: 1;
         text-align: center;
-    }
-    .sidebar ul li i {
-        margin-right: 5px;
+        border-radius: 10px;
     }
     .main-content {
         padding: 20px 15px;
     }
     .top-bar h1 {
-        font-size: 24px;
+        font-size: 22px;
         text-align: center;
     }
     .dashboard-card {
         height: auto;
-        padding: 30px 20px;
+        padding: 25px 20px;
+        margin-bottom: 15px;
     }
     
-    /* Profile details stack vertically */
+    /* Profile Details */
     .profile-box {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 25px 15px;
+        padding: 30px 20px;
         gap: 25px;
     }
     .profile-image img {
-        width: 150px;
-        height: 150px;
+        width: 140px;
+        height: 140px;
     }
     .profile-details {
         width: 100%;
@@ -1795,30 +1999,29 @@ html {
     .profile-info {
         text-align: left;
         display: inline-block;
+        margin-top: 15px;
     }
     .profile-buttons {
         display: flex;
         flex-direction: column;
         gap: 10px;
         width: 100%;
+        margin-top: 25px;
     }
     .profile-buttons a, .profile-buttons button {
         width: 100%;
         margin-right: 0;
-    }
-    .profile-buttons button {
-        width: 100%;
+        padding: 12px !important;
     }
     
-    /* Courses grid box spacing */
     .courses-box {
-        padding: 20px 15px;
+        padding: 15px;
     }
     .course-item {
-        padding: 20px;
+        padding: 15px;
     }
     
-    /* Custom Admin table mobile scrolling */
+    /* Admin Dashboard tables mobile scroll handling */
     .custom-admin-table {
         font-size: 12px;
     }
