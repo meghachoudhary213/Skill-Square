@@ -1,143 +1,135 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faculty - Skill Square</title>
 
     <!-- Bootstrap -->
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css?v=1.2">
 
-    <link rel="stylesheet"
-    href="bootstrap/bootstrap.min.css">
-
-    <!-- Font Awesome -->
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Font Awesome (Local) -->
+    <link rel="stylesheet" href="fontawesome/css/all.min.css?v=1.2">
 
     <!-- CSS -->
-
-    <link rel="stylesheet"
-    href="CSS/style.css">
-
+    <link rel="stylesheet" href="CSS/style.css?v=1.2">
 </head>
 
 <body>
 
-<section class="faculty-section">
-
-    <div class="container">
-
-        <h1 class="faculty-heading">
-
-            Our Expert Trainers
-
-        </h1>
-
-        <div class="row g-4 mt-4">
-
-            <!-- FACULTY 1 -->
-
-            <div class="col-lg-4 col-md-6">
-
-                <div class="faculty-card">
-
-                    <img src="Images/faculty1.avif">
-
-                    <h3>Rahul Sharma</h3>
-
-                    <p>
-
-                        Web Development Trainer
-
-                    </p>
-
-                    <div class="faculty-icons">
-
-                        <i class="fa-brands fa-linkedin"></i>
-
-                        <i class="fa-brands fa-github"></i>
-
-                        <i class="fa-brands fa-instagram"></i>
-
-                    </div>
-
-                </div>
-
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                Skill Square
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto" id="mainNavbarList">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="faculty.html">Faculty</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">Register</a>
+                    </li>
+                </ul>
             </div>
-
-            <!-- FACULTY 2 -->
-
-            <div class="col-lg-4 col-md-6">
-
-                <div class="faculty-card">
-
-                    <img src="Images/faculty2.avif">
-
-                    <h3>Rajesh Sharma</h3>
-
-                    <p>
-
-                        Data Analytics Trainer
-
-                    </p>
-
-                    <div class="faculty-icons">
-
-                        <i class="fa-brands fa-linkedin"></i>
-
-                        <i class="fa-brands fa-github"></i>
-
-                        <i class="fa-brands fa-instagram"></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- FACULTY 3 -->
-
-            <div class="col-lg-4 col-md-6">
-
-                <div class="faculty-card">
-
-                    <img src="Images/faculty3.jpg">
-
-                    <h3>Priya Verma</h3>
-
-                    <p>
-
-                        Java Trainer
-
-                    </p>
-
-                    <div class="faculty-icons">
-
-                        <i class="fa-brands fa-linkedin"></i>
-
-                        <i class="fa-brands fa-github"></i>
-
-                        <i class="fa-brands fa-instagram"></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
         </div>
+    </nav>
+    <!-- Navbar End -->
 
-    </div>
+    <!-- Faculty Section Start -->
+    <section class="faculty-section">
+        <div class="container">
+            <h1 class="faculty-heading text-center">
+                Our Expert Trainers
+            </h1>
+            <div class="row g-4 mt-4">
+                <!-- FACULTY 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="faculty-card">
+                        <img src="Images/faculty1.avif" alt="Rahul Sharma">
+                        <h3>Rahul Sharma</h3>
+                        <p>Web Development Trainer</p>
+                        <div class="faculty-icons">
+                            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
 
-</section>
+                <!-- FACULTY 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="faculty-card">
+                        <img src="Images/faculty2.avif" alt="Rajesh Sharma">
+                        <h3>Rajesh Sharma</h3>
+                        <p>Data Analytics Trainer</p>
+                        <div class="faculty-icons">
+                            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- FACULTY 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="faculty-card">
+                        <img src="Images/faculty3.jpg" alt="Priya Verma">
+                        <h3>Priya Verma</h3>
+                        <p>Java Trainer</p>
+                        <div class="faculty-icons">
+                            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Faculty Section End -->
+
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container text-center">
+            <h3 class="footer-logo">
+                Skill Square
+            </h3>
+            <p>
+                Empowering students with modern skills and practical learning.
+            </p>
+            <p class="copyright">
+                © 2026 Skill Square. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Bootstrap JS -->
+    <script src="bootstrap/bootstrap.bundle.js?v=1.2"></script>
+
+    <!-- Custom JS -->
+    <script src="javascript/script.js?v=1.2"></script>
 </body>
 
 </html>

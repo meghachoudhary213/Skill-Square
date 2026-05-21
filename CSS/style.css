@@ -214,6 +214,7 @@ body {
 
 .faculty-section {
     background: #0d0d0d;
+    padding: 120px 0 80px 0;
 }
 
 .faculty-card {
@@ -1685,7 +1686,7 @@ html {
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 215, 0, 0.9%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
     }
 
-    .navbar-collapse {
+    .navbar-collapse.show {
         background: rgba(10, 10, 10, 0.98) !important;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
@@ -2028,5 +2029,11 @@ html {
     .custom-admin-table thead th, 
     .custom-admin-table tbody td {
         padding: 10px 8px;
+    }
+
+    /* Standalone mobile page top-spacing overrides to clear fixed navbar */
+    .faculty-section,
+    .contact-section {
+        padding-top: 100px !important;
     }
 }
