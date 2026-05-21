@@ -5,7 +5,7 @@
 
 const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://localhost:5000"
-    : "https://skill-square-backend.onrender.com";
+    : "https://skill-square-backend-megha.onrender.com";
 
 document.addEventListener("DOMContentLoaded", () => {
     const contactForm = document.getElementById("contactForm");
