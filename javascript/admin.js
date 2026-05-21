@@ -99,6 +99,8 @@ function initAdminDashboard() {
 
     // Load registered students
     fetchStudents(token);
+    // Load contact messages
+    fetchContacts(token);
 }
 
 /**
@@ -271,6 +273,186 @@ window.deleteStudent = async function(userId, userName) {
         alert("Failed to complete action. Server error or network issue.");
         // Reset button
         const deleteBtn = document.querySelector(`#user-row-${userId} .btn-delete-student`);
+        if (deleteBtn) {
+            deleteBtn.disabled = false;
+            deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i> Delete`;
+        }
+    }
+};
+
+/**
+ * Fetch contact messages from the backend and populate the UI
+ */
+async function fetchContacts(token) {
+    const tableBody = document.getElementById("contactTableBody");
+    const totalMessagesEl = document.getElementById("totalMessages");
+    
+    if (!tableBody) return;
+
+    try {
+        const response = await fetch(`${API_URL}/api/admin/contacts`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (response.status === 401 || response.status === 403) {
+            // Token expired or invalid
+            alert("Session expired or invalid. Please log in again.");
+            localStorage.removeItem("adminToken");
+            localStorage.removeItem("adminEmail");
+            window.location.href = "admin-login.html";
+            return;
+        }
+
+        if (data.success) {
+            const contacts = data.contacts || [];
+            
+            // Update stats
+            if (totalMessagesEl) {
+                totalMessagesEl.textContent = contacts.length;
+            }
+
+            // Populate table
+            if (contacts.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            No contact messages received yet.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tableBody.innerHTML = "";
+            contacts.forEach((contact) => {
+                const dateReceived = contact.createdAt 
+                    ? new Date(contact.createdAt).toLocaleDateString("en-US", {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      }) 
+                    : "N/A";
+
+                const subject = contact.subject || `<span class="text-muted italic">No Subject</span>`;
+                const message = contact.message || "";
+
+                const row = document.createElement("tr");
+                row.id = `contact-row-${contact._id}`;
+                row.innerHTML = `
+                    <td><strong>${escapeHTML(contact.name)}</strong></td>
+                    <td>${escapeHTML(contact.email)}</td>
+                    <td>${escapeHTML(subject)}</td>
+                    <td>
+                        <div class="message-text-cell" title="Click to view full message" onclick="alert('Message from ${escapeHTML(contact.name)}:\\n\\n${escapeHTML(contact.message).replace(/'/g, "\\'")}')" style="cursor: pointer; max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-decoration: underline; color: gold;">
+                            ${escapeHTML(message)}
+                        </div>
+                    </td>
+                    <td>${dateReceived}</td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-delete-student" onclick="deleteContact('${contact._id}', '${escapeHTML(contact.name)}')">
+                            <i class="fa-solid fa-trash-can"></i> Delete
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+        } else {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="text-center text-danger py-4">
+                        Failed to load messages: ${data.message || "Unknown error"}
+                    </td>
+                </tr>
+            `;
+        }
+    } catch (error) {
+        console.error("Error loading contacts:", error);
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="6" class="text-center text-danger py-4">
+                    Connection failed. Please verify that the backend server is running.
+                </td>
+            </tr>
+        `;
+    }
+}
+
+/**
+ * Handle contact deletion from DB
+ */
+window.deleteContact = async function(contactId, contactName) {
+    const token = localStorage.getItem("adminToken");
+    if (!token) return;
+
+    if (!confirm(`Are you sure you want to delete the message from "${contactName}"?`)) {
+        return;
+    }
+
+    try {
+        const deleteBtn = document.querySelector(`#contact-row-${contactId} .btn-delete-student`);
+        if (deleteBtn) {
+            deleteBtn.disabled = true;
+            deleteBtn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`;
+        }
+
+        const response = await fetch(`${API_URL}/api/admin/contacts/${contactId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert(data.message || `Deleted contact message successfully.`);
+            const row = document.getElementById(`contact-row-${contactId}`);
+            if (row) {
+                row.style.transition = "all 0.5s ease";
+                row.style.opacity = "0";
+                row.style.transform = "translateX(-20px)";
+                setTimeout(() => {
+                    row.remove();
+                    // Decrement message count
+                    const totalMessagesEl = document.getElementById("totalMessages");
+                    if (totalMessagesEl) {
+                        const current = parseInt(totalMessagesEl.textContent) || 0;
+                        totalMessagesEl.textContent = Math.max(0, current - 1);
+                    }
+                    // If no rows left, show "No contact messages received yet."
+                    const tableBody = document.getElementById("contactTableBody");
+                    if (tableBody && tableBody.children.length === 0) {
+                        tableBody.innerHTML = `
+                            <tr>
+                                <td colspan="6" class="text-center text-muted py-4">
+                                    No contact messages received yet.
+                                </td>
+                            </tr>
+                        `;
+                    }
+                }, 500);
+            } else {
+                fetchContacts(token);
+            }
+        } else {
+            alert(data.message || "Failed to delete message.");
+            if (deleteBtn) {
+                deleteBtn.disabled = false;
+                deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i> Delete`;
+            }
+        }
+    } catch (error) {
+        console.error("Delete Contact Error:", error);
+        alert("Failed to complete action. Server error or network issue.");
+        const deleteBtn = document.querySelector(`#contact-row-${contactId} .btn-delete-student`);
         if (deleteBtn) {
             deleteBtn.disabled = false;
             deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i> Delete`;

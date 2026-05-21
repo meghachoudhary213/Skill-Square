@@ -140,4 +140,54 @@ router.get("/profile", protect, (req, res) => {
   });
 });
 
+// @route   POST /api/auth/reset-password
+// @desc    Reset user password by email & phone
+router.post("/reset-password", async (req, res) => {
+  try {
+    const { email, phone, newPassword } = req.body;
+
+    if (!email || !phone || !newPassword) {
+      return res.status(400).json({ success: false, message: "Please enter all fields" });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ success: false, message: "Password must be at least 6 characters long" });
+    }
+
+    // Find user by email (case-insensitive)
+    const user = await User.findOne({ email: email.toLowerCase() });
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User with this email not found" });
+    }
+
+    // Verify phone number (direct match or last 10 digits match)
+    const inputPhoneCleaned = phone.replace(/\D/g, "");
+    const dbPhoneCleaned = (user.phone || "").replace(/\D/g, "");
+
+    const isPhoneValid = 
+      phone.trim() === (user.phone || "").trim() || 
+      (inputPhoneCleaned.length >= 10 && dbPhoneCleaned.length >= 10 && inputPhoneCleaned.slice(-10) === dbPhoneCleaned.slice(-10));
+
+    if (!isPhoneValid) {
+      return res.status(400).json({ success: false, message: "Registered phone number does not match" });
+    }
+
+    // Hash the new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    // Save the new password
+    user.password = hashedPassword;
+    await user.save();
+
+    res.json({
+      success: true,
+      message: "Password reset successful! You can now log in with your new password.",
+    });
+  } catch (error) {
+    console.error("Reset Password Error:", error);
+    res.status(500).json({ success: false, message: "Server error during password reset" });
+  }
+});
+
 module.exports = router;
