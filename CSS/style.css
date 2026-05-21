@@ -1625,4 +1625,205 @@ html {
 
 .italic {
     font-style: italic;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN & MEDIA QUERIES
+   ========================================== */
+
+/* Tablets & Small Desktops (max-width: 991px) */
+@media (max-width: 991px) {
+    .hero-title {
+        font-size: 42px;
+    }
+    .hero-text {
+        font-size: 16px;
+    }
+    .section-title {
+        font-size: 32px;
+    }
+    .login-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 50px 15px;
+    }
+    .login-box {
+        max-width: 600px;
+    }
+    .login-left {
+        padding: 40px 30px;
+    }
+    .login-left h1 {
+        font-size: 40px;
+    }
+    .login-right {
+        padding: 40px 30px;
+    }
+    .login-right h2 {
+        font-size: 32px;
+    }
+}
+
+/* Mobile Devices (max-width: 767px) */
+@media (max-width: 767px) {
+    /* Navbar styling on mobile */
+    .navbar-brand {
+        font-size: 22px;
+    }
+    .nav-link {
+        margin-left: 0;
+        padding: 10px 0;
+        text-align: center;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        padding-top: 60px;
+        text-align: center;
+    }
+    .hero-title {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+    .hero-img {
+        width: 100%;
+        margin-top: 30px;
+    }
+    
+    /* General section paddings */
+    .about-section, 
+    .courses-section, 
+    .faculty-section, 
+    .testimonial-section, 
+    .faq-section, 
+    .contact-section,
+    .course-details-section,
+    .certificate-section,
+    .profile-page {
+        padding: 50px 0 !important;
+    }
+    
+    .section-title, 
+    .faculty-heading, 
+    .contact-heading, 
+    .certificate-heading {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+    
+    /* Stats box padding */
+    .stats-box {
+        margin-bottom: 20px;
+    }
+    
+    /* Faculty & testimonial card formatting */
+    .faculty-card, .testimonial-card, .certificate-card {
+        padding: 25px 15px;
+    }
+    .testimonial-card img {
+        width: 90px;
+        height: 90px;
+    }
+    
+    /* Contact section info cards stacking */
+    .contact-info {
+        padding: 25px 20px;
+        margin-bottom: 30px;
+    }
+    .contact-form-box {
+        padding: 25px 20px;
+    }
+    
+    /* DASHBOARD LAYOUT RESPONSIVENESS */
+    .dashboard-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        padding: 20px 15px;
+        border-right: none;
+        border-bottom: 1px solid #222;
+    }
+    .logo {
+        margin-bottom: 20px;
+        font-size: 28px;
+    }
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        padding-left: 0;
+    }
+    .sidebar ul li {
+        margin-bottom: 0;
+        padding: 10px 12px;
+        font-size: 13px;
+        flex-grow: 1;
+        text-align: center;
+    }
+    .sidebar ul li i {
+        margin-right: 5px;
+    }
+    .main-content {
+        padding: 20px 15px;
+    }
+    .top-bar h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+    .dashboard-card {
+        height: auto;
+        padding: 30px 20px;
+    }
+    
+    /* Profile details stack vertically */
+    .profile-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 25px 15px;
+        gap: 25px;
+    }
+    .profile-image img {
+        width: 150px;
+        height: 150px;
+    }
+    .profile-details {
+        width: 100%;
+    }
+    .profile-info {
+        text-align: left;
+        display: inline-block;
+    }
+    .profile-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    .profile-buttons a, .profile-buttons button {
+        width: 100%;
+        margin-right: 0;
+    }
+    .profile-buttons button {
+        width: 100%;
+    }
+    
+    /* Courses grid box spacing */
+    .courses-box {
+        padding: 20px 15px;
+    }
+    .course-item {
+        padding: 20px;
+    }
+    
+    /* Custom Admin table mobile scrolling */
+    .custom-admin-table {
+        font-size: 12px;
+    }
+    .custom-admin-table thead th, 
+    .custom-admin-table tbody td {
+        padding: 10px 8px;
+    }
 }
