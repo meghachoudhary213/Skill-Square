@@ -1687,6 +1687,7 @@ html {
     }
 
     .navbar-collapse.show {
+        display: block !important;
         background: rgba(10, 10, 10, 0.98) !important;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);

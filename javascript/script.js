@@ -186,27 +186,44 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // 2. Auto-Collapse Mobile Navbar on Link Selection
-    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+    // 2. Custom Manual Mobile Navbar Toggle & Auto-Collapse
+    const customToggler = document.getElementById("customNavbarToggler") || document.querySelector(".navbar-toggler");
     const navbarCollapse = document.getElementById("navbarNav");
-    if (navbarCollapse) {
-        navLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                // If collapsed menu is open, toggle it closed
-                if (navbarCollapse.classList.contains("show")) {
-                    try {
-                        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                        if (bsCollapse) {
-                            bsCollapse.hide();
-                        } else {
-                            new bootstrap.Collapse(navbarCollapse).hide();
-                        }
-                    } catch (err) {
-                        // Fallback manual class toggle if Bootstrap object is unavailable
-                        navbarCollapse.classList.remove("show");
-                    }
-                }
-            });
+    const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+    
+    if (customToggler && navbarCollapse) {
+        // Toggle menu on click
+        customToggler.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const isOpen = navbarCollapse.classList.contains("show");
+            if (isOpen) {
+                navbarCollapse.classList.remove("show");
+                customToggler.setAttribute("aria-expanded", "false");
+            } else {
+                navbarCollapse.classList.add("show");
+                customToggler.setAttribute("aria-expanded", "true");
+            }
         });
+
+        // Close menu when clicking outside of it
+        document.addEventListener("click", (e) => {
+            if (navbarCollapse.classList.contains("show") && !navbarCollapse.contains(e.target) && !customToggler.contains(e.target)) {
+                navbarCollapse.classList.remove("show");
+                customToggler.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        // Auto-Collapse on Link Selection
+        if (navLinks) {
+            navLinks.forEach(link => {
+                link.addEventListener("click", () => {
+                    if (navbarCollapse.classList.contains("show")) {
+                        navbarCollapse.classList.remove("show");
+                        customToggler.setAttribute("aria-expanded", "false");
+                    }
+                });
+            });
+        }
     }
 });
