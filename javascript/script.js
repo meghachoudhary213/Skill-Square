@@ -2,39 +2,37 @@
 
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 
-window.addEventListener("scroll", () => {
-
-    // Show Button
-
-    if(window.scrollY > 300){
-        scrollTopBtn.style.display = "block";
-    }
-    else{
-        scrollTopBtn.style.display = "none";
-    }
-
-    // Navbar Effect
-
-    const navbar = document.querySelector(".custom-navbar");
-
-    if(window.scrollY > 50){
-        navbar.classList.add("scrolled");
-    }
-    else{
-        navbar.classList.remove("scrolled");
-    }
-
-});
-
-// Scroll To Top
-
-scrollTopBtn.addEventListener("click", () => {
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+if (scrollTopBtn) {
+    window.addEventListener("scroll", () => {
+        // Show Button
+        if(window.scrollY > 300){
+            scrollTopBtn.style.display = "block";
+        }
+        else{
+            scrollTopBtn.style.display = "none";
+        }
     });
 
+    // Scroll To Top
+    scrollTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+}
+
+// Navbar Effect
+window.addEventListener("scroll", () => {
+    const navbar = document.querySelector(".custom-navbar");
+    if (navbar) {
+        if(window.scrollY > 50){
+            navbar.classList.add("scrolled");
+        }
+        else{
+            navbar.classList.remove("scrolled");
+        }
+    }
 });
 // // Dark Light Mode
 
