@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Skill Square</title>
+
+    <!-- Bootstrap -->
+
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+
+        <div class="sidebar">
+
+            <h2 class="logo">
+
+                Skill Square
+
+            </h2>
+
+            <ul>
+                <li class="active-menu">
+
+                    <a href="admin-dashboard.html">
+
+                        <i class="fa-solid fa-gauge"></i>
+
+                        Admin Panel
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="#" id="logoutAdmin">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        Logout
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- MAIN CONTENT -->
+
+        <div class="main-content">
+
+            <!-- TOP BAR -->
+
+            <div class="top-bar">
+
+                <h1>
+
+                    Admin Console 👋
+
+                </h1>
+
+            </div>
+
+            <!-- CARDS -->
+
+            <div class="row g-4 mt-3">
+
+                <div class="col-lg-4">
+
+                    <div class="dashboard-card">
+
+                        <i class="fa-solid fa-users card-icon"></i>
+
+                        <h2 id="totalStudents">0</h2>
+
+                        <p>Total Students</p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="dashboard-card">
+
+                        <i class="fa-solid fa-graduation-cap card-icon"></i>
+
+                        <h2>6</h2>
+
+                        <p>Courses Offered</p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="dashboard-card">
+
+                        <i class="fa-solid fa-database card-icon text-success"></i>
+
+                        <h3 class="text-success">Connected</h3>
+
+                        <p>MongoDB Status</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- STUDENTS DIRECTORY -->
+
+            <div class="courses-box mt-5">
+
+                <h2>
+
+                    Registered Student Directory
+
+                </h2>
+
+                <div class="table-responsive mt-4">
+                    <table class="table table-dark table-hover align-middle custom-admin-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Registered On</th>
+                                <th scope="col" class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody">
+                            <!-- Populated dynamically via JS -->
+                            <tr>
+                                <td colspan="6" class="text-center text-muted py-4">
+                                    <div class="spinner-border text-warning spinner-border-sm me-2" role="status"></div>
+                                    Loading registered students...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Script -->
+    <script src="javascript/admin.js"></script>
+
+</body>
+
+</html>

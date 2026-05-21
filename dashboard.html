@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Skill Square</title>
+
+    <!-- Bootstrap -->
+
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+
+        <div class="sidebar">
+
+            <h2 class="logo">
+
+                Skill Square
+
+            </h2>
+
+            <ul>
+                <li class="active-menu">
+
+                    <a href="dashboard.html">
+
+                        <i class="fa-solid fa-house"></i>
+
+                        Dashboard
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="courses.html">
+
+                        <i class="fa-solid fa-book"></i>
+
+                        Courses
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="profile.html">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        Profile
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="certificate.html">
+
+                        <i class="fa-solid fa-award"></i>
+
+                        Certificates
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="index.html">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        Logout
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- MAIN CONTENT -->
+
+        <div class="main-content">
+
+            <!-- TOP BAR -->
+
+            <div class="top-bar">
+
+                <h1>
+
+                    Welcome Back 👋
+
+                </h1>
+
+            </div>
+
+            <!-- CARDS -->
+
+            <div class="row g-4 mt-3">
+
+                <div class="col-lg-4">
+                    <a href="courses.html" class="card-link">
+
+                        <div class="dashboard-card">
+
+                            <i class="fa-solid fa-book-open card-icon"></i>
+
+                            <h2>6</h2>
+
+                            <p>Courses</p>
+
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <a href="certificate.html" class="card-link">
+
+                        <div class="dashboard-card">
+
+                            <i class="fa-solid fa-award card-icon"></i>
+
+                            <h2>3</h2>
+
+                            <p>Certificates</p>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <div class="col-lg-4">
+
+                    <div class="dashboard-card">
+
+                        <i class="fa-solid fa-chart-line card-icon"></i>
+
+                        <h3>85%</h3>
+
+                        <p>Progress</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PROFILE -->
+
+            <section class="profile-section" id="profile">
+
+                <!-- COURSES -->
+
+                <div class="courses-box mt-5">
+
+                    <h2>
+
+                        My Courses
+
+                    </h2>
+
+                    <div class="row g-4 mt-3">
+
+                        <div class="col-lg-4">
+
+                            <div class="course-item">
+
+                                <i class="fa-solid fa-code"></i>
+
+                                <h4>Web Development</h4>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-4">
+
+                            <div class="course-item">
+
+                                <i class="fa-brands fa-python"></i>
+
+                                <h4>Python</h4>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-4">
+
+                            <div class="course-item">
+
+                                <i class="fa-solid fa-chart-line"></i>
+
+                                <h4>Data Analytics</h4>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+        </div>
+
+    </div>
+
+    <!-- Script for Authentication and Session Handling -->
+    <script src="javascript/auth-guard.js"></script>
+</body>
+
+</html>

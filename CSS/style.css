@@ -1,0 +1,1628 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: black;
+    color: white;
+}
+
+/* Navbar */
+
+.custom-navbar {
+    background-color: black;
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    color: gold !important;
+    font-size: 28px;
+}
+
+.nav-link {
+    color: white !important;
+    margin-left: 20px;
+}
+
+.nav-link:hover {
+    color: gold !important;
+}
+
+/* Hero Section */
+
+.hero-section {
+    background: black;
+    padding-top: 100px;
+}
+
+.hero-title {
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.hero-title span {
+    color: gold;
+}
+
+.hero-text {
+    color: #ccc;
+    font-size: 18px;
+    margin: 20px 0;
+    line-height: 1.8;
+}
+
+.btn-warning {
+    background: gold;
+    border: none;
+    color: black;
+    font-weight: 600;
+}
+
+.btn-warning:hover {
+    background: white;
+    color: black;
+}
+
+.hero-img {
+    border-radius: 20px;
+    width: 90%;
+}
+
+/* About Section */
+
+.about-section {
+    background: #0d0d0d;
+}
+
+.section-subtitle {
+    color: gold;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.about-text {
+    color: #bbb;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+.about-img {
+    border-radius: 20px;
+}
+
+.stats-box {
+    background: #111;
+    border: 1px solid gold;
+    padding: 25px;
+    text-align: center;
+    border-radius: 15px;
+    transition: 0.4s;
+}
+
+.stats-box:hover {
+    transform: translateY(-8px);
+    background: gold;
+    color: black;
+}
+
+.stats-box h3 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+/* Courses Section */
+
+.courses-section {
+    background: black;
+}
+
+/* COURSE CARD */
+
+.course-card {
+
+    background: #111;
+
+    padding: 40px 25px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    border: 1px solid #222;
+
+    transition: 0.3s;
+
+    height: 100%;
+
+}
+
+.course-card:hover {
+
+    transform: translateY(-10px);
+
+    border-color: gold;
+
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+
+}
+
+/* ICON */
+
+.course-icon {
+
+    font-size: 55px;
+
+    color: gold;
+
+    margin-bottom: 25px;
+
+    display: block;
+
+}
+
+/* HEADING */
+
+.course-card h3 {
+
+    color: white;
+
+    margin-bottom: 20px;
+
+}
+
+/* PARAGRAPH */
+
+.course-card p {
+
+    color: #bbb;
+
+    margin-bottom: 25px;
+
+}
+
+/* BUTTON */
+
+.course-card button {
+
+    background: gold;
+
+    color: black;
+
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+}
+
+/* Faculty Section */
+
+.faculty-section {
+    background: #0d0d0d;
+}
+
+.faculty-card {
+    background: #111;
+    padding: 35px;
+    text-align: center;
+    border-radius: 20px;
+    transition: 0.4s;
+    border: 1px solid #222;
+}
+
+.faculty-card:hover {
+    transform: translateY(-10px);
+    border-color: gold;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.faculty-card {
+    background: #111;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid #222;
+}
+
+.faculty-card img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    margin: 0 auto 20px auto;
+    border: 4px solid gold;
+}
+
+.faculty-card h3 {
+    margin-bottom: 10px;
+}
+
+.faculty-card p {
+    color: #bbb;
+    margin-bottom: 20px;
+}
+
+.faculty-icons a {
+    width: 40px;
+    height: 40px;
+    background: gold;
+    color: black;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.faculty-icons a:hover {
+    background: white;
+}
+
+/* Testimonial Section */
+
+.testimonial-section {
+    background: black;
+}
+
+.testimonial-card {
+    background: #111;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 750px;
+    margin: auto;
+    border: 1px solid #222;
+}
+
+.testimonial-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid gold;
+    margin-bottom: 20px;
+}
+
+.student-course {
+    color: gold;
+    margin-bottom: 20px;
+}
+
+.testimonial-text {
+    color: #bbb;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: gold;
+    border-radius: 50%;
+    padding: 20px;
+}
+
+/* FAQ Section */
+
+.faq-section {
+    background: #0d0d0d;
+}
+
+.accordion-item {
+    background: #111;
+    border: 1px solid #222;
+    margin-bottom: 20px;
+    border-radius: 10px !important;
+    overflow: hidden;
+}
+
+.accordion-button {
+    background: #111;
+    color: white;
+    font-weight: 600;
+    padding: 20px;
+}
+
+.accordion-button:not(.collapsed) {
+    background: gold;
+    color: black;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
+
+.accordion-body {
+    background: #111;
+    color: #bbb;
+    line-height: 1.8;
+}
+
+/* Contact Section */
+
+.contact-section {
+    background: black;
+}
+
+.contact-info {
+    background: #111;
+    padding: 40px;
+    border-radius: 20px;
+    height: 100%;
+}
+
+.contact-info h3 {
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    color: #bbb;
+    line-height: 1.8;
+}
+
+.contact-item {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-item i {
+    width: 50px;
+    height: 50px;
+    background: gold;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.social-icons a {
+    width: 45px;
+    height: 45px;
+    background: gold;
+    color: black;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: white;
+}
+
+.contact-form {
+    background: #111;
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.form-control {
+    background: #000;
+    border: 1px solid #333;
+    color: white;
+    padding: 15px;
+}
+
+.form-control:focus {
+    background: #000;
+    color: white;
+    border-color: gold;
+    box-shadow: none;
+}
+
+/* Footer */
+
+.footer {
+    background: #0d0d0d;
+    padding: 40px 0;
+    border-top: 1px solid #222;
+}
+
+.footer-logo {
+    color: gold;
+    margin-bottom: 15px;
+}
+
+.footer p {
+    color: #bbb;
+}
+
+.copyright {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Scroll Top Button */
+
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    background: gold;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    z-index: 999;
+    transition: 0.3s;
+}
+
+#scrollTopBtn:hover {
+    background: white;
+}
+
+/* Sticky Navbar Effect */
+
+.custom-navbar {
+    transition: 0.4s;
+}
+
+.custom-navbar.scrolled {
+    background: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.hero-title {
+    animation: slideLeft 1.2s ease;
+}
+
+.hero-img {
+    animation: slideRight 1.2s ease;
+}
+
+@keyframes slideLeft {
+
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+@keyframes slideRight {
+
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+/* Login/Register */
+
+.login-section {
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    width: 400px;
+    background: #111;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid gold;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: gold;
+}
+
+.login-box a {
+    text-decoration: none;
+}
+
+/* Theme Button */
+
+/* .theme-btn{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: gold;
+    color: black;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.theme-btn:hover{
+    background: white;
+} */
+
+/* Light Mode */
+
+/* body.light-mode{
+    background: #f5f5f5;
+    color: black;
+}
+
+body.light-mode .custom-navbar{
+    background: white;
+}
+
+body.light-mode .nav-link{
+    color: black !important;
+}
+
+body.light-mode .hero-section,
+body.light-mode .courses-section,
+body.light-mode .testimonial-section,
+body.light-mode .contact-section{
+    background: #f5f5f5;
+}
+
+body.light-mode .about-section,
+body.light-mode .faculty-section,
+body.light-mode .faq-section,
+body.light-mode .footer{
+    background: white;
+}
+
+body.light-mode .course-card,
+body.light-mode .faculty-card,
+body.light-mode .testimonial-card,
+body.light-mode .contact-form,
+body.light-mode .contact-info,
+body.light-mode .accordion-item,
+body.light-mode .stats-box,
+body.light-mode .login-box{
+    background: white;
+    color: black;
+    border: 1px solid #ddd;
+}
+
+body.light-mode .hero-text,
+body.light-mode .about-text,
+body.light-mode .course-card p,
+body.light-mode .testimonial-text,
+body.light-mode .accordion-body,
+body.light-mode .footer p,
+body.light-mode .contact-info p{
+    color: #555;
+}
+
+body.light-mode .form-control{
+    background: #fff;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+body.light-mode .accordion-button{
+    background: white;
+    color: black;
+} */
+.faculty-card img {
+    width: 140px !important;
+    height: 140px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    display: block !important;
+    margin: auto !important;
+    border: 4px solid gold !important;
+    max-width: 140px !important;
+    justify-content: center;
+    align-items: center;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Course Card */
+
+.course-card {
+    background: #111;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+}
+
+.course-card i {
+    font-size: 40px;
+    color: gold;
+    margin-bottom: 20px;
+}
+
+
+
+.login-form button {
+    width: 100%;
+    padding: 15px;
+    background: gold;
+    border: none;
+    font-weight: bold;
+}
+
+.login-section {
+    min-height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 1000px;
+    background: #0d0d0d;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #222;
+}
+
+.login-left {
+    background: linear-gradient(135deg, #111, #000);
+    color: white;
+    padding: 60px;
+    text-align: center;
+}
+
+.login-left h1 {
+    color: gold;
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.login-left p {
+    color: #ccc;
+    font-size: 18px;
+}
+
+.login-right {
+    padding: 60px;
+    background: #0a0a0a;
+}
+
+.login-right h2 {
+    color: gold;
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.login-right p {
+    color: #bbb;
+    margin-bottom: 30px;
+}
+
+.login-right input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    background: #111;
+    color: white;
+    font-size: 16px;
+}
+
+.login-btn,
+.register-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: gold;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.login-btn:hover,
+.register-btn:hover {
+    background: white;
+}
+
+.register-text {
+    text-align: center;
+    margin-top: 20px;
+    color: #bbb;
+}
+
+.register-text a {
+    color: gold;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-box {
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+}
+
+.form-control {
+
+    width: 100%;
+
+}
+
+.profile-box {
+    background: #111;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid gold;
+    color: white;
+    margin-top: 30px;
+}
+
+.profile-box h2 {
+    color: gold;
+    margin-bottom: 20px;
+}
+
+/* DASHBOARD */
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: #000;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 260px;
+    background: #0d0d0d;
+    padding: 30px;
+    border-right: 1px solid #222;
+}
+
+.logo {
+    color: gold;
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    position: relative;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: #111;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar ul li:hover {
+    background: gold;
+    color: black;
+}
+
+.sidebar ul li i {
+    margin-right: 10px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar ul li a::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.sidebar ul li:hover a {
+    color: black !important;
+}
+
+.active-menu a {
+    color: black !important;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+    flex: 1;
+    padding: 40px;
+    color: white;
+}
+
+.top-bar h1 {
+    color: gold;
+}
+
+/* CARDS */
+
+.dashboard-card {
+    background: #111;
+    padding: 35px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid #222;
+    transition: 0.3s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-10px);
+    border-color: gold;
+}
+
+.card-icon {
+    font-size: 50px;
+    color: gold;
+    margin-bottom: 20px;
+}
+
+/* PROFILE */
+
+.profile-box {
+    background: #111;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #222;
+}
+
+.profile-box h2 {
+    color: gold;
+    margin-bottom: 20px;
+}
+
+/* COURSES */
+
+.courses-box {
+    background: #111;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #222;
+}
+
+.courses-box h2 {
+    color: gold;
+}
+
+.course-item {
+    background: #0d0d0d;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.course-item:hover {
+    border: 1px solid gold;
+    transform: translateY(-8px);
+}
+
+.course-item i {
+    font-size: 45px;
+    color: gold;
+    margin-bottom: 15px;
+}
+
+/* ACTIVE MENU */
+
+.active-menu {
+    background: gold !important;
+    color: black !important;
+}
+
+/* COURSE PAGE */
+
+.course-heading {
+    color: gold;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+/* COURSE ICON FIX */
+
+.course-icon {
+
+    font-size: 55px !important;
+
+    color: gold !important;
+
+    margin-bottom: 25px;
+
+    display: block;
+
+}
+
+.course-card {
+
+    text-align: center;
+
+}
+
+/* DASHBOARD CARD LINK */
+
+.card-link {
+
+    text-decoration: none;
+
+    color: gold;
+
+    display: block;
+
+    height: 100%;
+
+}
+
+.dashboard-card {
+
+    background: #111;
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    height: 240px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    transition: 0.3s;
+
+}
+
+.course-details-section {
+
+    min-height: 100vh;
+
+    background: black;
+
+    padding: 80px 0;
+
+}
+
+.course-details-box {
+
+    background: #111;
+
+    padding: 50px;
+
+    border-radius: 20px;
+
+    border: 1px solid #222;
+
+    color: white;
+
+}
+
+.course-details-box h1 {
+
+    color: gold;
+
+    margin-bottom: 25px;
+
+}
+
+.course-details-box h3 {
+
+    color: gold;
+
+    margin-top: 30px;
+
+}
+
+.course-description {
+
+    color: #bbb;
+
+    font-size: 18px;
+
+}
+
+.enroll-btn {
+
+    margin-top: 30px;
+
+    background: gold;
+
+    border: none;
+
+    padding: 12px 30px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+}
+
+/* FACULTY SECTION */
+
+.faculty-section {
+
+    min-height: 100vh;
+
+    background: black;
+
+    padding: 80px 0;
+
+}
+
+.faculty-heading {
+
+    color: gold;
+
+    text-align: center;
+
+    font-size: 45px;
+
+    margin-bottom: 40px;
+
+}
+
+.faculty-card {
+
+    background: #111;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    border: 1px solid #222;
+
+    transition: 0.4s;
+
+}
+
+.faculty-card:hover {
+
+    transform: translateY(-10px);
+
+    border-color: gold;
+
+}
+
+.faculty-card img {
+
+    width: 150px;
+
+    height: 150px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    margin-bottom: 20px;
+
+}
+
+.faculty-card h3 {
+
+    color: white;
+
+}
+
+.faculty-card p {
+
+    color: #bbb;
+
+}
+
+.faculty-icons {
+
+    margin-top: 20px;
+
+}
+
+.faculty-icons i {
+
+    color: gold;
+
+    margin: 0 10px;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+}
+
+/* CONTACT SECTION */
+
+.contact-section {
+
+    min-height: 100vh;
+
+    background: black;
+
+    padding: 80px 0;
+
+}
+
+.contact-heading {
+
+    color: gold;
+
+    text-align: center;
+
+    font-size: 45px;
+
+}
+
+.contact-info {
+
+    color: white;
+
+}
+
+.contact-info h2 {
+
+    color: gold;
+
+    margin-bottom: 20px;
+
+}
+
+.contact-info p {
+
+    color: #bbb;
+
+    margin-bottom: 30px;
+
+}
+
+.info-box {
+
+    margin-bottom: 25px;
+
+    font-size: 18px;
+
+}
+
+.info-box i {
+
+    color: gold;
+
+    margin-right: 15px;
+
+}
+
+.contact-form-box {
+
+    background: #111;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    border: 1px solid #222;
+
+}
+
+.contact-form-box input,
+.contact-form-box textarea {
+
+    width: 100%;
+
+    margin-bottom: 20px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #1a1a1a;
+
+    color: white;
+
+}
+
+.contact-form-box button {
+
+    background: gold;
+
+    border: none;
+
+    padding: 14px 35px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+}
+
+/* CERTIFICATE SECTION */
+
+.certificate-section {
+
+    min-height: 100vh;
+
+    background: black;
+
+    padding: 80px 0;
+
+}
+
+.certificate-heading {
+
+    color: gold;
+
+    text-align: center;
+
+    font-size: 45px;
+
+}
+
+.certificate-card {
+
+    background: #111;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    border: 1px solid #222;
+
+    transition: 0.4s;
+
+}
+
+.certificate-card:hover {
+
+    transform: translateY(-10px);
+
+    border-color: gold;
+
+}
+
+.certificate-icon {
+
+    font-size: 60px;
+
+    color: gold;
+
+    margin-bottom: 25px;
+
+}
+
+.certificate-card h3 {
+
+    color: white;
+
+    margin-bottom: 15px;
+
+}
+
+.certificate-card p {
+
+    color: #bbb;
+
+    margin-bottom: 25px;
+
+}
+
+.certificate-card button {
+
+    background: gold;
+
+    border: none;
+
+    padding: 12px 30px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+}
+
+/* PROFILE PAGE */
+
+.profile-page {
+
+    min-height: 100vh;
+
+    background: black;
+
+    padding: 80px 0;
+
+}
+
+.profile-box {
+
+    background: #111;
+
+    border-radius: 25px;
+
+    padding: 50px;
+
+    border: 1px solid #222;
+
+    display: flex;
+
+    gap: 50px;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+}
+
+.profile-image img {
+
+    width: 220px;
+
+    height: 220px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 5px solid gold;
+
+}
+
+.profile-details {
+
+    flex: 1;
+
+}
+
+.profile-details h1 {
+
+    color: gold;
+
+    margin-bottom: 15px;
+
+}
+
+.profile-details p {
+
+    color: #bbb;
+
+    font-size: 18px;
+
+}
+
+.profile-info {
+
+    margin-top: 30px;
+
+}
+
+.info-item {
+
+    color: white;
+
+    margin-bottom: 18px;
+
+    font-size: 18px;
+
+}
+
+.info-item i {
+
+    color: gold;
+
+    margin-right: 15px;
+
+}
+
+.progress-section {
+
+    margin-top: 35px;
+
+}
+
+.progress-section h3 {
+
+    color: gold;
+
+    margin-bottom: 20px;
+
+}
+
+.profile-buttons {
+
+    margin-top: 35px;
+
+}
+
+.profile-buttons button {
+
+    background: gold;
+
+    border: none;
+
+    padding: 12px 28px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    margin-right: 15px;
+
+}
+
+/* Buttons styled in the login/register section */
+
+/* REGISTER PAGE */
+
+.register-container {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: black;
+
+}
+
+
+
+.register-form {
+
+    width: 400px;
+
+    background: #111;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    border: 1px solid gold;
+
+}
+
+/* ==========================================
+   ADMIN PANEL SPECIFIC STYLES
+   ========================================== */
+
+.custom-admin-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #222 !important;
+    background-color: #0d0d0d !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.custom-admin-table thead th {
+    background-color: #111 !important;
+    color: gold !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 16px;
+    border-bottom: 2px solid gold !important;
+    border-top: none !important;
+}
+
+.custom-admin-table tbody td {
+    padding: 16px;
+    color: #e0e0e0;
+    border-bottom: 1px solid #222;
+    background-color: #0d0d0d !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.custom-admin-table tbody tr:hover td {
+    background-color: #161616 !important;
+    color: #fff;
+}
+
+/* Custom Delete Button with gold-on-black outline and red accent */
+.btn-delete-student {
+    background: transparent;
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    outline: none;
+}
+
+.btn-delete-student:hover {
+    background: #ff4d4d;
+    color: #000 !important;
+    box-shadow: 0 0 12px rgba(255, 77, 77, 0.4);
+    transform: translateY(-2px);
+    border-color: #ff4d4d;
+}
+
+.btn-delete-student:active {
+    transform: translateY(0);
+}
+
+.btn-delete-student:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-delete-student .spinner-border {
+    width: 12px;
+    height: 12px;
+    border-width: 2px;
+}
+
+.italic {
+    font-style: italic;
+}

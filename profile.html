@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Profile</title>
+
+    <!-- Bootstrap -->
+
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="CSS/style.css">
+
+</head>
+
+<body>
+
+    <section class="profile-page">
+
+        <div class="container">
+
+            <div class="profile-box">
+
+                <!-- PROFILE IMAGE -->
+
+                <div class="profile-image">
+
+                    <img src="Images/user.jpg">
+
+                </div>
+
+                <!-- PROFILE DETAILS -->
+
+                <div class="profile-details">
+
+                    <h1 id="profileName">
+
+
+
+                    </h1>
+
+                    <div class="profile-info">
+
+                        <div class="info-item">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                            <span id="profileEmail">
+
+                            </span>
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            <span id="profilePhone">
+                            </span>
+
+                        </div>
+
+                        <div class="info-item">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            <span id="profileLocation">
+
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <!-- COURSE PROGRESS -->
+
+                    <div class="progress-section">
+
+                        <h3>
+
+                            Course Progress
+
+                        </h3>
+
+                        <div class="progress mb-4">
+
+                            <div class="progress-bar bg-warning" style="width:75%">
+
+                                75%
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BUTTONS -->
+
+                    <div class="profile-buttons">
+
+                        <a href="courses.html">
+
+                            <button>
+
+                                My Courses
+
+                            </button>
+
+                        </a>
+
+                        <a href="certificate.html">
+
+                            <button>
+
+                                Certificates
+
+                            </button>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <script>
+
+        document.getElementById("profileName").innerText = localStorage.getItem("userName");
+
+        document.getElementById("profileEmail").innerText = localStorage.getItem("userEmail");
+
+        document.getElementById("profilePhone").innerText = localStorage.getItem("userPhone");
+
+        document.getElementById("profileLocation").innerText = localStorage.getItem("userLocation");
+
+    </script>
+
+    <!-- Script for Authentication and Session Handling -->
+    <script src="javascript/auth-guard.js"></script>
+</body>
+
+</html>
