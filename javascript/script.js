@@ -115,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const registerLink = document.querySelector('a[href="register.html"]');
     
     const studentToken = localStorage.getItem("token");
-    const adminToken = localStorage.getItem("adminToken");
     
     if (studentToken && loginLink && registerLink) {
         // Student is logged in
@@ -134,22 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.removeItem("userEmail");
             localStorage.removeItem("userPhone");
             localStorage.removeItem("userLocation");
-            alert("Logged out successfully!");
-            window.location.reload();
-        });
-    } else if (adminToken && loginLink && registerLink) {
-        // Admin is logged in
-        loginLink.href = "admin-dashboard.html";
-        loginLink.textContent = "Admin Panel";
-        loginLink.classList.add("nav-link-dashboard");
-        
-        registerLink.href = "#";
-        registerLink.textContent = "Logout";
-        registerLink.classList.add("nav-link-logout");
-        registerLink.addEventListener("click", (e) => {
-            e.preventDefault();
-            // Clear admin session
-            localStorage.removeItem("adminToken");
             alert("Logged out successfully!");
             window.location.reload();
         });
