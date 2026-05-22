@@ -1,5 +1,14 @@
 // Client-Side Full-Stack API Integration for Skill Square
-const API_BASE_URL = "http://localhost:5000/api";
+const isLocal = window.location.hostname === "localhost" || 
+                window.location.hostname === "127.0.0.1" || 
+                 window.location.hostname.startsWith("192.168.") || 
+                 window.location.hostname.startsWith("10.") || 
+                 window.location.hostname.startsWith("172.") || 
+                 window.location.hostname.endsWith(".local");
+
+const API_BASE_URL = isLocal 
+    ? `http://${window.location.hostname}:5000/api` 
+    : "https://skill-square-backend-megha.onrender.com/api";
 
 document.addEventListener("DOMContentLoaded", () => {
   // === 1. REGISTRATION ===

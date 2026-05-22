@@ -75,47 +75,7 @@ function showSection(sectionId){
     .classList.add("active-section");
 
 }
-// REGISTER SYSTEM
-
-const registerForm =
-document.getElementById("registerForm");
-
-if(registerForm){
-
-    registerForm.addEventListener("submit", function(e){
-
-        e.preventDefault();
-
-        // GET VALUES
-
-        const name =
-        document.getElementById("name").value;
-
-        const email =
-        document.getElementById("email").value;
-
-        const password =
-        document.getElementById("password").value;
-
-        // SAVE DATA
-
-        localStorage.setItem("userName", name);
-
-        localStorage.setItem("userEmail", email);
-
-        localStorage.setItem("userPassword", password);
-
-        // SUCCESS MESSAGE
-
-        alert("Registration Successful");
-
-        // OPEN DASHBOARD
-
-        window.location.href = "dashboard.html";
-
-    });
-
-}
+// REGISTER SYSTEM (Intercepted and handled dynamically by register.js)
 
 
 
@@ -141,6 +101,15 @@ if(showName && showEmail){
 // SESSION-AWARE NAVIGATION & MOBILE AUTO-COLLAPSE
 // ==========================================
 document.addEventListener("DOMContentLoaded", () => {
+    // Dynamic Greeting in Mobile Top Header
+    const userGreet = document.querySelector(".mobile-user-greet");
+    if (userGreet) {
+        const userName = localStorage.getItem("userName");
+        if (userName) {
+            userGreet.textContent = `Hi, ${userName.split(' ')[0]}! 👋`;
+        }
+    }
+
     // 1. Dynamic Session-Aware Navbar Options
     const loginLink = document.querySelector('a[href="login.html"]');
     const registerLink = document.querySelector('a[href="register.html"]');

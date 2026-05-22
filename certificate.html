@@ -26,22 +26,52 @@
 
 <body>
 
-<section class="certificate-section">
+    <!-- Mobile Top Header -->
+    <div class="mobile-top-header">
+        <h2>Skill Square</h2>
+        <span class="mobile-user-greet">Hello! 👋</span>
+    </div>
 
-    <div class="container">
+    <div class="dashboard-container">
 
-        <!-- Back to Dashboard Link -->
-        <div class="mb-4">
-            <a href="dashboard.html" style="color: gold; text-decoration: none; font-weight: 600; font-size: 16px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='gold'">
-                <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
-            </a>
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h2 class="logo">Skill Square</h2>
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-house"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fa-solid fa-book"></i> Courses
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html">
+                        <i class="fa-solid fa-user"></i> Profile
+                    </a>
+                </li>
+                <li class="active-menu">
+                    <i class="fa-solid fa-award"></i> Certificates
+                </li>
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </a>
+                </li>
+            </ul>
         </div>
 
-        <h1 class="certificate-heading">
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="top-bar">
+                <h1>My Certificates</h1>
+            </div>
 
-            My Certificates
-
-        </h1>
+            <section class="certificate-section py-0">
+                <div class="container p-0">
 
         <div class="row g-4 mt-5">
 
@@ -137,9 +167,35 @@
 
         </div>
 
+            </section>
+
+        </div>
+
     </div>
 
-</section>
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <a href="dashboard.html" class="mobile-bottom-nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="courses.html" class="mobile-bottom-nav-item">
+            <i class="fa-solid fa-book"></i>
+            <span>Courses</span>
+        </a>
+        <a href="profile.html" class="mobile-bottom-nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+        <a href="certificate.html" class="mobile-bottom-nav-item active">
+            <i class="fa-solid fa-award"></i>
+            <span>Certificates</span>
+        </a>
+        <a href="index.html" class="mobile-bottom-nav-item">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
 
     <!-- Script for Authentication and Session Handling -->
     <script src="javascript/auth-guard.js"></script>

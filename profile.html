@@ -25,9 +25,52 @@
 
 <body>
 
-    <section class="profile-page">
+    <!-- Mobile Top Header -->
+    <div class="mobile-top-header">
+        <h2>Skill Square</h2>
+        <span class="mobile-user-greet">Hello! 👋</span>
+    </div>
 
-        <div class="container">
+    <div class="dashboard-container">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h2 class="logo">Skill Square</h2>
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-house"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fa-solid fa-book"></i> Courses
+                    </a>
+                </li>
+                <li class="active-menu">
+                    <i class="fa-solid fa-user"></i> Profile
+                </li>
+                <li>
+                    <a href="certificate.html">
+                        <i class="fa-solid fa-award"></i> Certificates
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="top-bar">
+                <h1>My Profile</h1>
+            </div>
+
+            <section class="profile-page py-0">
+                <div class="container p-0">
 
             <div class="profile-box">
 
@@ -134,19 +177,42 @@
             </div>
 
         </div>
+            </section>
 
-    </section>
+        </div>
+
+    </div>
+
     <script>
-
         document.getElementById("profileName").innerText = localStorage.getItem("userName");
-
         document.getElementById("profileEmail").innerText = localStorage.getItem("userEmail");
-
         document.getElementById("profilePhone").innerText = localStorage.getItem("userPhone");
-
         document.getElementById("profileLocation").innerText = localStorage.getItem("userLocation");
-
     </script>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <a href="dashboard.html" class="mobile-bottom-nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="courses.html" class="mobile-bottom-nav-item">
+            <i class="fa-solid fa-book"></i>
+            <span>Courses</span>
+        </a>
+        <a href="profile.html" class="mobile-bottom-nav-item active">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+        <a href="certificate.html" class="mobile-bottom-nav-item">
+            <i class="fa-solid fa-award"></i>
+            <span>Certificates</span>
+        </a>
+        <a href="index.html" class="mobile-bottom-nav-item">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+    </div>
 
     <!-- Script for Authentication and Session Handling -->
     <script src="javascript/auth-guard.js"></script>
