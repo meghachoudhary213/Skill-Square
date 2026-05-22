@@ -260,12 +260,11 @@ body {
     color: #bbb;
     margin-bottom: 20px;
 }
-
 .faculty-icons a {
     width: 40px;
     height: 40px;
     background: gold;
-    color: black;
+    color: black !important;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -275,8 +274,16 @@ body {
     transition: 0.3s;
 }
 
+.faculty-icons a i {
+    color: black !important;
+}
+
 .faculty-icons a:hover {
     background: white;
+}
+
+.faculty-icons a:hover i {
+    color: black !important;
 }
 
 /* Testimonial Section */
@@ -402,7 +409,7 @@ body {
     width: 45px;
     height: 45px;
     background: gold;
-    color: black;
+    color: black !important;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -412,8 +419,16 @@ body {
     transition: 0.3s;
 }
 
+.social-icons a i {
+    color: black !important;
+}
+
 .social-icons a:hover {
     background: white;
+}
+
+.social-icons a:hover i {
+    color: black !important;
 }
 
 .contact-form {
