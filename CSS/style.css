@@ -1074,6 +1074,7 @@ html {
 .login-box {
     width: 100%;
     max-width: 1050px;
+    margin: 0 auto !important;
     background: var(--glass-bg) !important;
     border: 1.5px solid var(--glass-border) !important;
     backdrop-filter: blur(20px);
