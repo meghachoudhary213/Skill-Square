@@ -158,8 +158,6 @@ body {
 
 }
 
-/* ICON */
-
 .course-icon {
 
     font-size: 55px;
@@ -168,7 +166,7 @@ body {
 
     margin-bottom: 25px;
 
-    display: block;
+    display: inline-block;
 
 }
 
