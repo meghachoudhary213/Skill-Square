@@ -1392,8 +1392,8 @@ html {
 
 .contact-form-box input::placeholder,
 .contact-form-box textarea::placeholder {
-    color: #8c8c8c;
-    opacity: 1;
+    color: #ffffff !important;
+    opacity: 0.8 !important;
 }
 
 .contact-form-box input:focus,
