@@ -46,9 +46,20 @@ loginForm.addEventListener("submit", async function (e) {
 
     e.preventDefault();
 
-    const email = document.getElementById("loginEmail").value;
+    const email = document.getElementById("loginEmail").value.trim();
 
     const password = document.getElementById("loginPassword").value;
+
+    // Check for empty fields
+    if (!email) {
+        showPremiumNotification("Email Required", "Please enter your email address.", true);
+        return;
+    }
+
+    if (!password) {
+        showPremiumNotification("Password Required", "Please enter your password.", true);
+        return;
+    }
 
     // Password validation: exactly 8 characters, alphanumeric
     const passwordRegex = /^[a-zA-Z0-9]{8}$/;

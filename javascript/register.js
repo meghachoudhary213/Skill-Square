@@ -46,15 +46,41 @@ registerForm.addEventListener("submit", async function (e) {
 
     e.preventDefault();
 
-    const name = document.getElementById("name").value;
+    const name = document.getElementById("name").value.trim();
 
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("email").value.trim();
 
-    const phone = document.getElementById("phone").value;
+    const phone = document.getElementById("phone").value.trim();
 
-    const location = document.getElementById("location").value;
+    const location = document.getElementById("location").value.trim();
 
     const password = document.getElementById("password").value;
+
+    // Check for empty fields
+    if (!name) {
+        showPremiumNotification("Name Required", "Please enter your full name.", true);
+        return;
+    }
+
+    if (!email) {
+        showPremiumNotification("Email Required", "Please enter your email address.", true);
+        return;
+    }
+
+    if (!phone) {
+        showPremiumNotification("Phone Required", "Please enter your phone number.", true);
+        return;
+    }
+
+    if (!location) {
+        showPremiumNotification("Location Required", "Please enter your location.", true);
+        return;
+    }
+
+    if (!password) {
+        showPremiumNotification("Password Required", "Please enter a password.", true);
+        return;
+    }
 
     // Password validation: exactly 8 characters, alphanumeric
     const passwordRegex = /^[a-zA-Z0-9]{8}$/;
