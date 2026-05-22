@@ -1,5 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+:root {
+    --luxury-gold: #d4af37;
+    --light-gold: #ffe066;
+    --dark-gold: #aa7c11;
+    --gold-gradient: linear-gradient(135deg, #ffe066 0%, #d4af37 50%, #aa7c11 100%);
+    --metallic-gold: linear-gradient(90deg, #ffe893 0%, #d4af37 50%, #aa7c11 100%);
+    --deep-obsidian: #050505;
+    --glass-bg: rgba(17, 17, 17, 0.75);
+    --glass-border: rgba(255, 215, 0, 0.15);
+    --glass-hover-border: rgba(255, 215, 0, 0.4);
+    --text-muted: rgba(255, 255, 255, 0.65);
+    --glow-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
+    --transition-premium: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +23,14 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: black;
+    background-color: var(--deep-obsidian);
     color: white;
+    overflow-x: hidden;
+}
+
+/* Global premium transitions for dynamic feel */
+a, button, input, textarea, select, .course-card, .stats-box, .faculty-card, .testimonial-card, i, span {
+    transition: var(--transition-premium);
 }
 
 /* Navbar */
@@ -36,8 +57,10 @@ body {
 /* Hero Section */
 
 .hero-section {
-    background: black;
+    background: radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.08) 0%, var(--deep-obsidian) 70%);
+    position: relative;
     padding-top: 100px;
+    overflow: hidden;
 }
 
 .hero-title {
@@ -56,195 +79,227 @@ body {
     margin: 20px 0;
     line-height: 1.8;
 }
-
 .btn-warning {
-    background: gold;
+    background: var(--gold-gradient);
     border: none;
     color: black;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+    transition: var(--transition-premium) !important;
 }
 
 .btn-warning:hover {
-    background: white;
-    color: black;
+    background: #ffffff !important;
+    color: #000000 !important;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35);
 }
 
 .hero-img {
-    border-radius: 20px;
+    border-radius: 24px;
     width: 90%;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(255, 215, 0, 0.05);
 }
 
 /* About Section */
 
 .about-section {
-    background: #0d0d0d;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.06) 0%, var(--deep-obsidian) 80%);
+    position: relative;
+    padding: 100px 0;
 }
 
 .section-subtitle {
-    color: gold;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+    color: var(--luxury-gold) !important;
+    letter-spacing: 3px;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 12px;
 }
 
 .section-title {
-    font-size: 42px;
-    font-weight: 700;
-    margin-bottom: 20px;
+    font-size: 45px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff 0%, #f3f3f3 60%, var(--luxury-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
 }
 
 .about-text {
-    color: #bbb;
+    color: var(--text-muted);
     line-height: 1.8;
     font-size: 17px;
+    font-weight: 300;
 }
 
 .about-img {
-    border-radius: 20px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px rgba(255, 215, 0, 0.05);
 }
 
 .stats-box {
-    background: #111;
-    border: 1px solid gold;
-    padding: 25px;
+    background: var(--glass-bg);
+    border: 1.5px solid var(--glass-border);
+    padding: 30px 25px;
     text-align: center;
-    border-radius: 15px;
-    transition: 0.4s;
+    border-radius: 18px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: var(--transition-premium) !important;
 }
 
 .stats-box:hover {
-    transform: translateY(-8px);
-    background: gold;
-    color: black;
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--luxury-gold);
+    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.15);
+    background: rgba(255, 215, 0, 0.03) !important;
 }
 
 .stats-box h3 {
-    font-size: 32px;
-    font-weight: 700;
+    font-size: 38px;
+    font-weight: 800;
+    background: var(--metallic-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 5px;
 }
 
 /* Courses Section */
 
 .courses-section {
-    background: black;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.07) 0%, var(--deep-obsidian) 80%);
+    position: relative;
+    padding: 100px 0;
 }
 
-/* COURSE CARD */
-
+/* COURSE CARD WITH GLASSMORPHISM AND GOLD ACCENTS */
 .course-card {
-
-    background: #111;
-
-    padding: 40px 25px;
-
-    border-radius: 20px;
-
+    background: var(--glass-bg) !important;
+    padding: 45px 30px !important;
+    border-radius: 24px !important;
     text-align: center;
-
-    border: 1px solid #222;
-
-    transition: 0.3s;
-
+    border: 1.5px solid var(--glass-border) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
     height: 100%;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition-premium) !important;
 }
 
 .course-card:hover {
-
-    transform: translateY(-10px);
-
-    border-color: gold;
-
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-
+    transform: translateY(-12px) scale(1.02);
+    border-color: var(--luxury-gold) !important;
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15) !important;
+    background: rgba(255, 215, 0, 0.02) !important;
 }
 
+/* PREMIUM METALLIC ICON OVERHAUL */
 .course-icon {
-
-    font-size: 55px;
-
-    color: gold;
-
+    font-size: 42px !important;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 25px;
+    display: inline-flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 85px;
+    height: 85px;
+    background-color: rgba(255, 215, 0, 0.04) !important;
+    border: 1.5px solid var(--glass-border) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-premium) !important;
+}
 
-    display: block !important;
-
-    text-align: center !important;
-
-    margin-left: auto !important;
-
-    margin-right: auto !important;
-
-    width: fit-content !important;
-
+.course-card:hover .course-icon {
+    transform: scale(1.1) rotate(8deg);
+    border-color: var(--luxury-gold) !important;
+    background-color: rgba(255, 215, 0, 0.12) !important;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
 }
 
 /* HEADING */
-
 .course-card h3 {
+    color: #ffffff !important;
+    font-size: 23px !important;
+    font-weight: 700 !important;
+    margin-bottom: 15px !important;
+    letter-spacing: -0.3px !important;
+    transition: var(--transition-premium);
+}
 
-    color: white;
-
-    margin-bottom: 20px;
-
+.course-card:hover h3 {
+    color: var(--light-gold) !important;
 }
 
 /* PARAGRAPH */
-
 .course-card p {
-
-    color: #bbb;
-
-    margin-bottom: 25px;
-
+    color: var(--text-muted) !important;
+    font-size: 15.5px !important;
+    line-height: 1.8 !important;
+    margin-bottom: 30px !important;
+    font-weight: 300 !important;
 }
 
 /* BUTTON */
-
 .course-card button {
+    background: var(--gold-gradient) !important;
+    color: #000000 !important;
+    border: none !important;
+    padding: 12px 30px !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15) !important;
+    cursor: pointer !important;
+    transition: var(--transition-premium) !important;
+}
 
-    background: gold;
-
-    color: black;
-
-    border: none;
-
-    padding: 12px 25px;
-
-    border-radius: 10px;
-
-    font-weight: bold;
-
+.course-card button:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.35) !important;
 }
 
 /* Faculty Section */
 
 .faculty-section {
-    background: #0d0d0d;
-    padding: 120px 0 80px 0;
+    background: radial-gradient(circle at 80% 50%, rgba(255, 215, 0, 0.06) 0%, var(--deep-obsidian) 80%);
+    position: relative;
+    padding: 100px 0;
 }
 
 .faculty-card {
-    background: #111;
-    padding: 35px;
+    background: var(--glass-bg) !important;
+    padding: 40px 30px !important;
+    border-radius: 24px !important;
     text-align: center;
-    border-radius: 20px;
-    transition: 0.4s;
-    border: 1px solid #222;
+    border: 1.5px solid var(--glass-border) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    transition: var(--transition-premium) !important;
+    overflow: hidden;
 }
 
 .faculty-card:hover {
-    transform: translateY(-10px);
-    border-color: gold;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-}
-
-.faculty-card {
-    background: #111;
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    overflow: hidden;
-    border: 1px solid #222;
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--luxury-gold) !important;
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15) !important;
+    background: rgba(255, 215, 0, 0.02) !important;
 }
 
 .faculty-card img {
@@ -255,66 +310,90 @@ body {
     object-position: center;
     display: block;
     margin: 0 auto 20px auto;
-    border: 4px solid gold;
+    border: 4px solid var(--luxury-gold) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transition: var(--transition-premium) !important;
+}
+
+.faculty-card:hover img {
+    transform: scale(1.06) rotate(3deg);
+    border-color: var(--light-gold) !important;
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
 }
 
 .faculty-card h3 {
-    margin-bottom: 10px;
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
 .faculty-card p {
-    color: #bbb;
+    color: var(--text-muted);
+    font-size: 15px;
     margin-bottom: 20px;
+    font-weight: 300;
 }
+
 .faculty-icons a {
-    width: 40px;
-    height: 40px;
-    background: gold;
-    color: black !important;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 215, 0, 0.05) !important;
+    border: 1.5px solid var(--glass-border) !important;
+    color: var(--luxury-gold) !important;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    margin: 0 5px;
+    margin: 0 6px;
     text-decoration: none;
-    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-premium) !important;
 }
 
 .faculty-icons a i {
-    color: black !important;
+    color: var(--luxury-gold) !important;
+    font-size: 16px;
+    transition: var(--transition-premium) !important;
 }
 
 .faculty-icons a:hover {
-    background: white;
+    background: var(--gold-gradient) !important;
+    border-color: var(--luxury-gold) !important;
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: 0 6px 18px rgba(255, 215, 0, 0.4);
 }
 
 .faculty-icons a:hover i {
-    color: black !important;
+    color: #000000 !important;
 }
 
 /* Testimonial Section */
 
 .testimonial-section {
-    background: black;
+    background: radial-gradient(circle at 50% 80%, rgba(255, 215, 0, 0.08) 0%, var(--deep-obsidian) 80%);
+    padding: 100px 0;
     overflow: hidden;
 }
 
 .testimonial-card {
-    background: #111;
-    padding: 40px;
-    border-radius: 20px;
+    background: var(--glass-bg) !important;
+    padding: 50px 40px !important;
+    border-radius: 24px !important;
     text-align: center;
     max-width: 750px;
     margin: auto;
-    border: 1.5px solid rgba(255, 215, 0, 0.15);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1.5px solid var(--glass-border) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    transition: var(--transition-premium) !important;
 }
 
 .testimonial-card:hover {
-    transform: translateY(-8px) scale(1.02) !important;
-    border-color: gold;
-    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.12), 0 5px 25px rgba(0, 0, 0, 0.7);
+    transform: translateY(-10px) scale(1.02) !important;
+    border-color: var(--luxury-gold) !important;
+    box-shadow: 0 25px 50px rgba(255, 215, 0, 0.15), 0 10px 30px rgba(0, 0, 0, 0.7) !important;
+    background: rgba(255, 215, 0, 0.02) !important;
 }
 
 .testimonial-card img {
@@ -322,24 +401,33 @@ body {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid gold;
+    border: 4px solid var(--luxury-gold) !important;
     margin-bottom: 20px;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transition: var(--transition-premium) !important;
 }
 
 .testimonial-card:hover img {
     transform: scale(1.08) rotate(3deg);
+    border-color: var(--light-gold) !important;
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
 }
 
 .student-course {
-    color: gold;
+    color: var(--luxury-gold) !important;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 14px;
     margin-bottom: 20px;
 }
 
 .testimonial-text {
-    color: #bbb;
-    line-height: 1.8;
-    font-size: 17px;
+    color: var(--text-muted) !important;
+    line-height: 1.9 !important;
+    font-size: 17.5px !important;
+    font-weight: 300;
+    font-style: italic;
 }
 
 /* Premium Entrance Animations for Carousel Items */
@@ -374,7 +462,7 @@ body {
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     background-color: rgba(255, 215, 0, 0.15);
-    border: 1.5px solid gold;
+    border: 1.5px solid var(--luxury-gold);
     border-radius: 50%;
     padding: 22px;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -383,7 +471,7 @@ body {
 
 .carousel-control-prev:hover .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon {
-    background-color: gold;
+    background-color: var(--luxury-gold);
     color: black !important;
     transform: scale(1.18);
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.45);
@@ -392,37 +480,60 @@ body {
 /* FAQ Section */
 
 .faq-section {
-    background: #0d0d0d;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.06) 0%, var(--deep-obsidian) 80%);
+    padding: 100px 0;
 }
 
 .accordion-item {
-    background: #111;
-    border: 1px solid #222;
+    background: var(--glass-bg) !important;
+    border: 1.5px solid var(--glass-border) !important;
     margin-bottom: 20px;
-    border-radius: 10px !important;
+    border-radius: 16px !important;
     overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: var(--transition-premium) !important;
+}
+
+.accordion-item:hover {
+    border-color: var(--glass-hover-border) !important;
+    box-shadow: 0 12px 30px rgba(255, 215, 0, 0.05);
 }
 
 .accordion-button {
-    background: #111;
-    color: white;
+    background: transparent !important;
+    color: #ffffff !important;
     font-weight: 600;
-    padding: 20px;
+    font-size: 17px;
+    padding: 22px 25px;
+    border: none !important;
+    box-shadow: none !important;
+    transition: var(--transition-premium) !important;
 }
 
 .accordion-button:not(.collapsed) {
-    background: gold;
-    color: black;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 215, 0, 0.01)) !important;
+    color: var(--light-gold) !important;
+    border-bottom: 1.5px solid var(--glass-border) !important;
+}
+
+.accordion-button::after {
+    filter: invert(1) sepia(1) saturate(5) hue-rotate(15deg);
+    transition: var(--transition-premium) !important;
 }
 
 .accordion-button:focus {
-    box-shadow: none;
+    box-shadow: none !important;
 }
 
 .accordion-body {
-    background: #111;
-    color: #bbb;
+    background: rgba(0, 0, 0, 0.2) !important;
+    color: var(--text-muted) !important;
     line-height: 1.8;
+    font-size: 15.5px;
+    font-weight: 300;
+    padding: 25px;
 }
 
 /* Contact Section */
@@ -940,30 +1051,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Course Card */
-
-.course-card {
-    background: #111;
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    transition: 0.3s;
-}
-
-.course-card:hover {
-    transform: translateY(-10px);
-}
-
-.course-card i {
-    font-size: 40px;
-    color: gold;
-    margin-bottom: 20px;
-    display: block !important;
-    text-align: center !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    width: fit-content !important;
-}
+/* Course Card styles consolidated above */
 
 
 
@@ -2811,4 +2899,193 @@ html {
     background: #ffcc00;
     box-shadow: 0 4px 20px rgba(255, 215, 0, 0.45);
     transform: translateY(-2px);
+}
+
+/* ==========================================
+   PREMIUM COURSE DETAILS PAGE OVERHAUL
+   ========================================== */
+.course-details-section {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.08) 0%, var(--deep-obsidian) 80%);
+    min-height: 100vh;
+    padding: 80px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-details-box {
+    background: var(--glass-bg) !important;
+    border: 1.5px solid var(--glass-border) !important;
+    border-radius: 28px !important;
+    padding: 55px 45px !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    max-width: 800px;
+    margin: 40px auto;
+    position: relative;
+    transition: var(--transition-premium) !important;
+}
+
+.course-details-box:hover {
+    border-color: var(--glass-hover-border) !important;
+    box-shadow: 0 30px 70px rgba(255, 215, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Premium Floating Back Button */
+.premium-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 215, 0, 0.05);
+    border: 1.5px solid var(--glass-border);
+    color: var(--luxury-gold) !important;
+    padding: 10px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14.5px;
+    text-decoration: none !important;
+    margin-bottom: 35px;
+    transition: var(--transition-premium) !important;
+}
+
+.premium-back-btn:hover {
+    background: var(--gold-gradient);
+    color: black !important;
+    border-color: var(--luxury-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.25);
+}
+
+.premium-back-btn i {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.premium-back-btn:hover i {
+    transform: translateX(-4px);
+}
+
+.course-details-box h1 {
+    font-size: 44px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.5px !important;
+    background: var(--gold-gradient) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    margin-top: 15px !important;
+    margin-bottom: 25px !important;
+}
+
+.course-description {
+    font-size: 18.5px !important;
+    color: var(--text-muted) !important;
+    line-height: 1.8 !important;
+    margin-bottom: 35px !important;
+    font-weight: 300 !important;
+}
+
+.course-details-box h3 {
+    color: #ffffff !important;
+    font-size: 21px !important;
+    font-weight: 700 !important;
+    margin-top: 30px !important;
+    margin-bottom: 18px !important;
+    letter-spacing: -0.3px !important;
+    border-left: 3px solid var(--luxury-gold);
+    padding-left: 12px;
+}
+
+.course-details-box ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 15px !important;
+    margin-bottom: 35px !important;
+}
+
+@media (max-width: 768px) {
+    .course-details-box ul {
+        grid-template-columns: 1fr !important;
+    }
+    .course-details-box {
+        padding: 35px 25px !important;
+        margin: 20px auto;
+    }
+    .course-details-box h1 {
+        font-size: 32px !important;
+    }
+}
+
+.course-details-box ul li {
+    background: rgba(255, 215, 0, 0.03) !important;
+    border: 1px solid var(--glass-border) !important;
+    padding: 14px 20px !important;
+    border-radius: 14px !important;
+    color: #ffffff !important;
+    font-size: 15.5px !important;
+    font-weight: 500 !important;
+    display: flex !important;
+    align-items: center !important;
+    transition: var(--transition-premium) !important;
+}
+
+.course-details-box ul li::before {
+    content: "\f00c" !important;
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    color: var(--luxury-gold) !important;
+    margin-right: 12px !important;
+    font-size: 14px !important;
+}
+
+.course-details-box ul li:hover {
+    border-color: var(--luxury-gold) !important;
+    background: rgba(255, 215, 0, 0.08) !important;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(255, 215, 0, 0.08);
+}
+
+.course-details-box p {
+    color: var(--light-gold) !important;
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    background: rgba(255, 215, 0, 0.04) !important;
+    border: 1px solid var(--glass-border) !important;
+    padding: 12px 20px !important;
+    border-radius: 12px !important;
+    display: inline-block !important;
+    margin-bottom: 25px !important;
+    transition: var(--transition-premium) !important;
+}
+
+.course-details-box p:hover {
+    background: rgba(255, 215, 0, 0.08) !important;
+    border-color: var(--luxury-gold) !important;
+}
+
+.enroll-btn {
+    display: block !important;
+    width: 100% !important;
+    background: var(--gold-gradient) !important;
+    color: #000000 !important;
+    border: none !important;
+    padding: 16px 30px !important;
+    border-radius: 14px !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.25) !important;
+    transition: var(--transition-premium) !important;
+    margin-top: 30px !important;
+}
+
+.enroll-btn:hover {
+    background: #ffffff !important;
+    color: #000000 !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.45) !important;
 }
