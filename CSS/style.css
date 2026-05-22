@@ -166,7 +166,15 @@ body {
 
     margin-bottom: 25px;
 
-    display: inline-block;
+    display: block !important;
+
+    text-align: center !important;
+
+    margin-left: auto !important;
+
+    margin-right: auto !important;
+
+    width: fit-content !important;
 
 }
 
@@ -685,6 +693,11 @@ html {
     font-size: 40px;
     color: gold;
     margin-bottom: 20px;
+    display: block !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: fit-content !important;
 }
 
 
