@@ -1,5 +1,45 @@
 const API_URL = "https://skill-square-backend-megha.onrender.com";
 
+// Custom Premium Toast Notification System
+function showPremiumNotification(title, message, isError = true) {
+    let toast = document.getElementById("premiumToast");
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "premiumToast";
+        toast.className = "toast-premium";
+        document.body.appendChild(toast);
+    }
+    
+    // Clear any active auto-dismiss timers
+    if (toast.dataset.timer) {
+        clearTimeout(parseInt(toast.dataset.timer));
+    }
+    
+    const iconClass = isError ? "fa-solid fa-circle-xmark error" : "fa-solid fa-circle-check";
+    const titleClass = isError ? "error" : "";
+    toast.innerHTML = `
+        <i class="${iconClass} toast-premium-icon"></i>
+        <div class="toast-premium-body">
+            <div class="toast-premium-title ${titleClass}">${title}</div>
+            <div class="toast-premium-text">${message}</div>
+        </div>
+        <button class="toast-premium-close" onclick="document.getElementById('premiumToast').classList.remove('active')">&times;</button>
+    `;
+    
+    // Slide in
+    toast.classList.remove("active");
+    setTimeout(() => {
+        toast.classList.add("active");
+    }, 50);
+    
+    // Auto slide out
+    const autoClose = setTimeout(() => {
+        toast.classList.remove("active");
+    }, 4500);
+    
+    toast.dataset.timer = autoClose;
+}
+
 const registerForm = document.getElementById("registerForm");
 
 registerForm.addEventListener("submit", async function (e) {
@@ -19,7 +59,7 @@ registerForm.addEventListener("submit", async function (e) {
     // Password validation: exactly 8 characters, alphanumeric
     const passwordRegex = /^[a-zA-Z0-9]{8}$/;
     if (!passwordRegex.test(password)) {
-        alert("Password must be exactly 8 characters long and contain only letters and numbers (alphanumeric).");
+        showPremiumNotification("Format Requirement", "Password must be exactly 8 characters long and contain only letters and numbers (alphanumeric).", true);
         return;
     }
 
@@ -35,7 +75,7 @@ registerForm.addEventListener("submit", async function (e) {
         const data = await response.json();
 
         if (data.success) {
-            alert(data.message);
+            showPremiumNotification("Success", data.message || "Registration successful!", false);
 
             // SAVE DATA
             localStorage.setItem("token", data.token);
@@ -44,28 +84,18 @@ registerForm.addEventListener("submit", async function (e) {
             localStorage.setItem("userPhone", data.user.phone || phone);
             localStorage.setItem("userLocation", data.user.location || location);
 
-            window.location.href = "dashboard.html";
+            setTimeout(() => {
+                window.location.href = "dashboard.html";
+            }, 1000);
         } else {
-            alert(data.message || "Registration failed");
+            showPremiumNotification("Registration Failed", data.message || "Registration failed", true);
         }
     } catch (error) {
         console.error("Error during registration:", error);
-        alert("Server error. Please try again later.");
+        showPremiumNotification("Server Error", "Server error. Please try again later.", true);
     }
 
 });
-
-// Toggle password and email visibility
-const toggleRegisterEmail = document.getElementById("toggleRegisterEmail");
-const registerEmailInput = document.getElementById("email");
-if (toggleRegisterEmail && registerEmailInput) {
-    toggleRegisterEmail.addEventListener("click", function () {
-        const isEmail = registerEmailInput.getAttribute("type") === "email";
-        registerEmailInput.setAttribute("type", isEmail ? "password" : "email");
-        this.classList.toggle("fa-eye");
-        this.classList.toggle("fa-eye-slash");
-    });
-}
 
 const toggleRegisterPassword = document.getElementById("toggleRegisterPassword");
 const registerPasswordInput = document.getElementById("password");
@@ -76,4 +106,5 @@ if (toggleRegisterPassword && registerPasswordInput) {
         this.classList.toggle("fa-eye");
         this.classList.toggle("fa-eye-slash");
     });
-}
+}
+
