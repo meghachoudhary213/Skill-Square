@@ -16,6 +16,13 @@ registerForm.addEventListener("submit", async function (e) {
 
     const password = document.getElementById("password").value;
 
+    // Password validation: exactly 8 characters, alphanumeric
+    const passwordRegex = /^[a-zA-Z0-9]{8}$/;
+    if (!passwordRegex.test(password)) {
+        alert("Password must be exactly 8 characters long and contain only letters and numbers (alphanumeric).");
+        return;
+    }
+
     try {
         const response = await fetch(`${API_URL}/api/auth/register`, {
             method: "POST",
@@ -47,3 +54,26 @@ registerForm.addEventListener("submit", async function (e) {
     }
 
 });
+
+// Toggle password and email visibility
+const toggleRegisterEmail = document.getElementById("toggleRegisterEmail");
+const registerEmailInput = document.getElementById("email");
+if (toggleRegisterEmail && registerEmailInput) {
+    toggleRegisterEmail.addEventListener("click", function () {
+        const isEmail = registerEmailInput.getAttribute("type") === "email";
+        registerEmailInput.setAttribute("type", isEmail ? "password" : "email");
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+    });
+}
+
+const toggleRegisterPassword = document.getElementById("toggleRegisterPassword");
+const registerPasswordInput = document.getElementById("password");
+if (toggleRegisterPassword && registerPasswordInput) {
+    toggleRegisterPassword.addEventListener("click", function () {
+        const isPassword = registerPasswordInput.getAttribute("type") === "password";
+        registerPasswordInput.setAttribute("type", isPassword ? "text" : "password");
+        this.classList.toggle("fa-eye");
+        this.classList.toggle("fa-eye-slash");
+    });
+}
