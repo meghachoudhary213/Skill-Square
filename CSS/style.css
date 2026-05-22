@@ -428,23 +428,180 @@ body {
 /* Contact Section */
 
 .contact-section {
-    background: black;
+    position: relative;
+    background: radial-gradient(circle at 50% 30%, #12100a 0%, #000000 70%);
+    overflow: hidden;
+}
+
+/* Beautiful dynamic background glowing rings */
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .contact-info {
-    background: #111;
-    padding: 40px;
-    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+    background: rgba(17, 17, 17, 0.65);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 50px 40px;
+    border-radius: 24px;
+    border: 1.5px solid rgba(255, 215, 0, 0.15);
     height: 100%;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.4s ease;
 }
 
-.contact-info h3 {
-    margin-bottom: 20px;
+.contact-info:hover {
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.05);
+}
+
+.contact-info h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffe57f 0%, #ffd700 50%, #ffa500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
 }
 
 .contact-info p {
-    color: #bbb;
+    color: #ffffff;
+    font-size: 16.5px;
     line-height: 1.8;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* Luxury Info Box Layout */
+.info-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: rgba(255, 215, 0, 0.04);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    padding: 16px 20px;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.info-box:hover {
+    background: rgba(255, 215, 0, 0.08);
+    border-color: rgba(255, 215, 0, 0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.08);
+}
+
+.info-box i {
+    font-size: 18px;
+    color: #ffd700;
+    margin-right: 18px;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.info-box:hover i {
+    background: #ffd700;
+    color: #000000;
+    transform: scale(1.08);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.35);
+}
+
+.info-box span {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+/* Premium Form Box Layout */
+.contact-form-box {
+    position: relative;
+    z-index: 2;
+    background: rgba(17, 17, 17, 0.65);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 50px 40px;
+    border-radius: 24px;
+    border: 1.5px solid rgba(255, 215, 0, 0.15);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.4s ease;
+}
+
+.contact-form-box:hover {
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.05);
+}
+
+.contact-form-box input,
+.contact-form-box textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 1.5px solid rgba(255, 215, 0, 0.15) !important;
+    color: #ffffff !important;
+    padding: 15px 18px !important;
+    margin-bottom: 20px !important;
+    border-radius: 12px !important;
+    font-size: 15px !important;
+    transition: all 0.3s ease !important;
+}
+
+.contact-form-box input::placeholder,
+.contact-form-box textarea::placeholder {
+    color: rgba(255, 255, 255, 0.8) !important;
+    opacity: 0.8 !important;
+}
+
+.contact-form-box input:focus,
+.contact-form-box textarea:focus {
+    border-color: #ffd700 !important;
+    outline: none !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.25) !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+}
+
+.contact-form-box button {
+    width: 100%;
+    background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%) !important;
+    color: #000000 !important;
+    border: none !important;
+    padding: 16px 20px !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+    font-size: 15.5px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer !important;
+    box-shadow: 0 5px 15px rgba(255, 165, 0, 0.25) !important;
+}
+
+.contact-form-box button:hover {
+    transform: translateY(-3px) scale(1.01) !important;
+    box-shadow: 0 8px 22px rgba(255, 165, 0, 0.45) !important;
+}
+
+.contact-form-box button:active {
+    transform: translateY(-1px) !important;
 }
 
 .contact-item {
