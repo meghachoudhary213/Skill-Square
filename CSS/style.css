@@ -555,28 +555,47 @@ body {
 .contact-form-box input,
 .contact-form-box textarea {
     width: 100%;
-    background: rgba(0, 0, 0, 0.5) !important;
-    border: 1.5px solid rgba(255, 215, 0, 0.15) !important;
+    background: rgba(20, 20, 20, 0.85) !important;
+    border: 1.5px solid rgba(255, 215, 0, 0.3) !important;
     color: #ffffff !important;
-    padding: 15px 18px !important;
+    padding: 16px 20px !important;
     margin-bottom: 20px !important;
     border-radius: 12px !important;
-    font-size: 15px !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
     transition: all 0.3s ease !important;
 }
 
 .contact-form-box input::placeholder,
 .contact-form-box textarea::placeholder {
-    color: rgba(255, 255, 255, 0.8) !important;
-    opacity: 0.8 !important;
+    color: #ffffff !important;
+    opacity: 0.95 !important;
+}
+
+.contact-form-box input::-webkit-input-placeholder,
+.contact-form-box textarea::-webkit-input-placeholder {
+    color: #ffffff !important;
+    opacity: 0.95 !important;
+}
+
+.contact-form-box input::-moz-placeholder,
+.contact-form-box textarea::-moz-placeholder {
+    color: #ffffff !important;
+    opacity: 0.95 !important;
+}
+
+.contact-form-box input:-ms-input-placeholder,
+.contact-form-box textarea:-ms-input-placeholder {
+    color: #ffffff !important;
+    opacity: 0.95 !important;
 }
 
 .contact-form-box input:focus,
 .contact-form-box textarea:focus {
     border-color: #ffd700 !important;
     outline: none !important;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.25) !important;
-    background: rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.35) !important;
+    background: rgba(10, 10, 10, 0.95) !important;
 }
 
 .contact-form-box button {
@@ -665,25 +684,41 @@ body {
 }
 
 .form-control {
-    background: rgba(0, 0, 0, 0.5) !important;
-    border: 1.5px solid rgba(255, 215, 0, 0.15) !important;
+    background: rgba(20, 20, 20, 0.85) !important;
+    border: 1.5px solid rgba(255, 215, 0, 0.3) !important;
     color: #ffffff !important;
-    padding: 15px 18px !important;
+    padding: 16px 20px !important;
     border-radius: 12px !important;
-    font-size: 15px !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
     transition: all 0.3s ease !important;
 }
 
 .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.8) !important;
-    opacity: 0.8 !important;
+    color: #ffffff !important;
+    opacity: 0.95 !important;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #ffffff !important;
+    opacity: 0.95 !important;
+}
+
+.form-control::-moz-placeholder {
+    color: #ffffff !important;
+    opacity: 0.95 !important;
+}
+
+.form-control:-ms-input-placeholder {
+    color: #ffffff !important;
+    opacity: 0.95 !important;
 }
 
 .form-control:focus {
-    background: rgba(0, 0, 0, 0.75) !important;
+    background: rgba(10, 10, 10, 0.95) !important;
     color: #ffffff !important;
     border-color: #ffd700 !important;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.25) !important;
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.35) !important;
     outline: none !important;
 }
 
