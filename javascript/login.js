@@ -1,4 +1,6 @@
-const API_URL = "https://skill-square-backend-megha.onrender.com";
+const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:5000"
+    : "https://skill-square-backend-megha.onrender.com";
 
 // Custom Premium Toast Notification System
 function showPremiumNotification(title, message, isError = true) {
@@ -61,10 +63,10 @@ loginForm.addEventListener("submit", async function (e) {
         return;
     }
 
-    // Password validation: exactly 8 characters, alphanumeric
-    const passwordRegex = /^[a-zA-Z0-9]{8}$/;
+    // Password validation: minimum 8 characters, alphanumeric and symbolic
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/;
     if (!passwordRegex.test(password)) {
-        showPremiumNotification("Format Requirement", "Password must be exactly 8 characters long and contain only letters and numbers (alphanumeric).", true);
+        showPremiumNotification("Format Requirement", "Password must be at least 8 characters long and contain letters, numbers, and symbols.", true);
         return;
     }
 

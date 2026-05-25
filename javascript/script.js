@@ -1,5 +1,72 @@
-// Scroll To Top Button
+// Override native window.alert with premium toast notification
+window.alert = function(message) {
+    const lower = message.toLowerCase();
+    const isError = lower.includes("failed") || 
+                    lower.includes("error") || 
+                    lower.includes("denied") || 
+                    lower.includes("invalid") || 
+                    lower.includes("unauthorized") || 
+                    lower.includes("expire") || 
+                    lower.includes("not match") || 
+                    lower.includes("could not connect") || 
+                    lower.includes("not authorized") ||
+                    lower.includes("fill in") ||
+                    lower.includes("please login") ||
+                    lower.includes("enter both") ||
+                    lower.includes("please enter") ||
+                    lower.includes("first");
+                    
+    const title = isError ? "Alert / Notification" : "Notification";
 
+    let toast = document.getElementById("premiumToast");
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "premiumToast";
+        toast.className = "toast-premium";
+        document.body.appendChild(toast);
+    }
+    
+    if (toast.dataset.timer) {
+        clearTimeout(parseInt(toast.dataset.timer));
+    }
+    
+    const iconClass = isError ? "fa-solid fa-circle-xmark error" : "fa-solid fa-circle-check";
+    const titleClass = isError ? "error" : "";
+    
+    toast.innerHTML = `
+        <i class="${iconClass} toast-premium-icon"></i>
+        <div class="toast-premium-body">
+            <div class="toast-premium-title ${titleClass}">${title}</div>
+            <div class="toast-premium-text">${message}</div>
+        </div>
+        <button class="toast-premium-close" onclick="document.getElementById('premiumToast').classList.remove('active')">&times;</button>
+    `;
+    
+    toast.classList.remove("active");
+    setTimeout(() => {
+        toast.classList.add("active");
+    }, 50);
+    
+    const autoClose = setTimeout(() => {
+        toast.classList.remove("active");
+    }, 4500);
+    
+    toast.dataset.timer = autoClose;
+};
+
+// Broker premium toast from localStorage for cross-redirect alerts
+(function() {
+    const brokerMsg = localStorage.getItem("brokerToastMessage");
+    if (brokerMsg) {
+        setTimeout(() => {
+            alert(brokerMsg);
+        }, 300);
+        localStorage.removeItem("brokerToastMessage");
+        localStorage.removeItem("brokerToastType");
+    }
+})();
+
+// Scroll To Top Button
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 
 if (scrollTopBtn) {
@@ -350,3 +417,11 @@ function initFacultyEditableSocials() {
         });
     });
 }
+
+// Load AI Chatbot automatically on all pages
+(function() {
+    if (document.getElementById("aiChatLauncher")) return;
+    const script = document.createElement("script");
+    script.src = "javascript/chatbot.js?v=" + new Date().getTime();
+    document.body.appendChild(script);
+})();

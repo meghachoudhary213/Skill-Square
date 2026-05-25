@@ -1,9 +1,69 @@
+// Override native window.alert with premium toast notification
+if (typeof window !== "undefined") {
+    window.alert = function(message) {
+        const lower = message.toLowerCase();
+        const isError = lower.includes("failed") || 
+                        lower.includes("error") || 
+                        lower.includes("denied") || 
+                        lower.includes("invalid") || 
+                        lower.includes("unauthorized") || 
+                        lower.includes("expire") || 
+                        lower.includes("not match") || 
+                        lower.includes("could not connect") || 
+                        lower.includes("not authorized") ||
+                        lower.includes("fill in") ||
+                        lower.includes("please login") ||
+                        lower.includes("enter both") ||
+                        lower.includes("please enter") ||
+                        lower.includes("first");
+                        
+        const title = isError ? "Alert / Notification" : "Notification";
+
+        let toast = document.getElementById("premiumToast");
+        if (!toast) {
+            toast = document.createElement("div");
+            toast.id = "premiumToast";
+            toast.className = "toast-premium";
+            document.body.appendChild(toast);
+        }
+        
+        if (toast.dataset.timer) {
+            clearTimeout(parseInt(toast.dataset.timer));
+        }
+        
+        const iconClass = isError ? "fa-solid fa-circle-xmark error" : "fa-solid fa-circle-check";
+        const titleClass = isError ? "error" : "";
+        
+        toast.innerHTML = `
+            <i class="${iconClass} toast-premium-icon"></i>
+            <div class="toast-premium-body">
+                <div class="toast-premium-title ${titleClass}">${title}</div>
+                <div class="toast-premium-text">${message}</div>
+            </div>
+            <button class="toast-premium-close" onclick="document.getElementById('premiumToast').classList.remove('active')">&times;</button>
+        `;
+        
+        toast.classList.remove("active");
+        setTimeout(() => {
+            toast.classList.add("active");
+        }, 50);
+        
+        const autoClose = setTimeout(() => {
+            toast.classList.remove("active");
+        }, 4500);
+        
+        toast.dataset.timer = autoClose;
+    };
+}
+
 /**
  * Skill Square Admin Panel JS
  * Handles Admin authentication, student directory fetch, and real-time MongoDB CRUD operations.
  */
 
-const API_URL = "https://skill-square-backend-megha.onrender.com";
+const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:5000"
+    : "https://skill-square-backend-megha.onrender.com";
 
 document.addEventListener("DOMContentLoaded", () => {
     // Detect current page
@@ -86,12 +146,12 @@ function initAdminDashboard() {
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            if (confirm("Are you sure you want to log out from the Admin Console?")) {
+            confirmPremium("Are you sure you want to log out from the Admin Console? Active sessions will be cleared.", () => {
                 localStorage.removeItem("adminToken");
                 localStorage.removeItem("adminEmail");
                 alert("Logged out successfully.");
                 window.location.href = "admin-login.html";
-            }
+            });
         });
     }
 
@@ -99,6 +159,8 @@ function initAdminDashboard() {
     fetchStudents(token);
     // Load contact messages
     fetchContacts(token);
+    // Load active enrollments ledger
+    fetchEnrollments(token);
 }
 
 /**
@@ -469,4 +531,214 @@ function escapeHTML(str) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+}
+
+/**
+ * Fetch all course enrollments and calculate revenue
+ */
+async function fetchEnrollments(token) {
+    const tableBody = document.getElementById("enrollmentTableBody");
+    const revenueEl = document.getElementById("totalRevenue");
+
+    if (!tableBody) return;
+
+    try {
+        const response = await fetch(`${API_URL}/api/enrollment/all`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            const enrolls = data.enrollments || [];
+
+            // Calculate revenue in real time
+            const total = enrolls.reduce((sum, e) => sum + (e.amountPaid || 0), 0);
+            if (revenueEl) {
+                revenueEl.textContent = `₹${total.toLocaleString("en-IN")}`;
+            }
+
+            if (enrolls.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            No course enrollments logged in ledger.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tableBody.innerHTML = "";
+            enrolls.forEach((enroll) => {
+                const dateJoined = enroll.enrolledAt 
+                    ? new Date(enroll.enrolledAt).toLocaleDateString("en-IN", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric"
+                      })
+                    : "N/A";
+
+                const studentName = enroll.user ? enroll.user.name : `<span class="text-muted italic">Unknown Student</span>`;
+                const studentEmail = enroll.user ? enroll.user.email : "N/A";
+
+                // Format payment method with specific details if available
+                let paymentDetailsStr = enroll.paymentMethod;
+                if (enroll.paymentMethod === "UPI" && enroll.paymentDetails) {
+                    const upiId = enroll.paymentDetails.upiId || (enroll.paymentDetails.get ? enroll.paymentDetails.get("upiId") : "App Link");
+                    paymentDetailsStr += ` (${upiId})`;
+                } else if (enroll.paymentMethod === "Debit/Credit Card" && enroll.paymentDetails) {
+                    const cardLast4 = enroll.paymentDetails.cardLast4 || (enroll.paymentDetails.get ? enroll.paymentDetails.get("cardLast4") : "0000");
+                    paymentDetailsStr += ` (Card *${cardLast4})`;
+                } else if (enroll.paymentMethod === "Net Banking" && enroll.paymentDetails) {
+                    const bankName = enroll.paymentDetails.bankName || (enroll.paymentDetails.get ? enroll.paymentDetails.get("bankName") : "Direct");
+                    paymentDetailsStr += ` (${bankName})`;
+                }
+
+                const row = document.createElement("tr");
+                row.id = `enrollment-row-${enroll._id}`;
+                row.innerHTML = `
+                    <td>
+                        <strong>${escapeHTML(studentName)}</strong><br>
+                        <small class="text-muted">${escapeHTML(studentEmail)}</small>
+                    </td>
+                    <td><strong>${escapeHTML(enroll.courseName)}</strong></td>
+                    <td><strong class="text-warning">₹${(enroll.amountPaid || 0).toLocaleString("en-IN")}</strong></td>
+                    <td><span class="badge bg-dark text-light p-2" style="border: 1px solid rgba(255,215,0,0.15);">${paymentDetailsStr}</span></td>
+                    <td>${dateJoined}</td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-delete-student" onclick="deleteEnrollment('${enroll._id}', '${escapeHTML(studentName)}', '${escapeHTML(enroll.courseName)}')">
+                            <i class="fa-solid fa-rotate-left"></i> Refund
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        } else {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="text-center text-danger py-4">
+                        Failed to load ledger: ${data.message}
+                    </td>
+                </tr>
+            `;
+        }
+    } catch (error) {
+        console.error("Error loading enrollment ledger:", error);
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="6" class="text-center text-danger py-4">
+                    Connection failed loading financial ledger.
+                </td>
+            </tr>
+        `;
+    }
+}
+
+/**
+ * Delete course enrollment / simulated refund
+ */
+window.deleteEnrollment = async function(enrollId, studentName, courseName) {
+    const token = localStorage.getItem("adminToken");
+    if (!token) return;
+
+    if (!confirm(`Are you absolutely sure you want to cancel the enrollment of student "${studentName}" in "${courseName}"?\n\nThis will remove the student from the course and process a simulated refund.`)) {
+        return;
+    }
+
+    try {
+        const deleteBtn = document.querySelector(`#enrollment-row-${enrollId} .btn-delete-student`);
+        if (deleteBtn) {
+            deleteBtn.disabled = true;
+            deleteBtn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`;
+        }
+
+        const response = await fetch(`${API_URL}/api/enrollment/${enrollId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert(data.message || `Enrollment canceled successfully.`);
+            
+            // Smooth row deletion
+            const row = document.getElementById(`enrollment-row-${enrollId}`);
+            if (row) {
+                row.style.transition = "all 0.5s ease";
+                row.style.opacity = "0";
+                row.style.transform = "translateX(-20px)";
+                setTimeout(() => {
+                    row.remove();
+                    // Refetch to update revenue statistics
+                    fetchEnrollments(token);
+                }, 500);
+            } else {
+                fetchEnrollments(token);
+            }
+        } else {
+            alert(data.message || "Failed to delete enrollment.");
+            if (deleteBtn) {
+                deleteBtn.disabled = false;
+                deleteBtn.innerHTML = `<i class="fa-solid fa-rotate-left"></i> Refund`;
+            }
+        }
+    } catch (error) {
+        console.error("Delete Enrollment Ledger Error:", error);
+        alert("Failed to complete action. Server error or network issue.");
+        const deleteBtn = document.querySelector(`#enrollment-row-${enrollId} .btn-delete-student`);
+        if (deleteBtn) {
+            deleteBtn.disabled = false;
+            deleteBtn.innerHTML = `<i class="fa-solid fa-rotate-left"></i> Refund`;
+        }
+    }
+};
+
+/**
+ * Premium Custom Confirmation Dialog Overlay for Admin Dashboard
+ */
+function confirmPremium(message, onConfirm) {
+    let confirmOverlay = document.getElementById("premiumConfirmModal");
+    if (!confirmOverlay) {
+        confirmOverlay = document.createElement("div");
+        confirmOverlay.id = "premiumConfirmModal";
+        confirmOverlay.className = "confirm-premium-overlay";
+        document.body.appendChild(confirmOverlay);
+    }
+
+    confirmOverlay.innerHTML = `
+        <div class="confirm-premium-content">
+            <i class="fa-solid fa-circle-question confirm-premium-icon"></i>
+            <h3>Confirm Action</h3>
+            <p>${message}</p>
+            <div class="confirm-premium-actions">
+                <button class="confirm-premium-btn cancel" id="premiumConfirmCancel">Cancel</button>
+                <button class="confirm-premium-btn confirm" id="premiumConfirmOk">Yes, Logout</button>
+            </div>
+        </div>
+    `;
+
+    setTimeout(() => {
+        confirmOverlay.classList.add("active");
+    }, 50);
+
+    const cancelBtn = confirmOverlay.querySelector("#premiumConfirmCancel");
+    const confirmBtn = confirmOverlay.querySelector("#premiumConfirmOk");
+
+    const closeConfirm = () => {
+        confirmOverlay.classList.remove("active");
+    };
+
+    cancelBtn.addEventListener("click", closeConfirm);
+    
+    confirmBtn.addEventListener("click", () => {
+        closeConfirm();
+        onConfirm();
+    });
 }

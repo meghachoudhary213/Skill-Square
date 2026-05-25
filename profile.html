@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en">
 
@@ -79,9 +79,23 @@
 
                 <!-- PROFILE IMAGE -->
 
-                <div class="profile-image">
+                <div class="profile-image" id="profileImageWrapper" style="position: relative; cursor: pointer; width: 150px; height: 150px; margin: 0 auto 25px auto;">
 
-                    <img src="Images/user.jpg">
+                    <div style="width: 100%; height: 100%; border-radius: 50%; overflow: hidden; border: 3px solid var(--luxury-gold); box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); position: relative;">
+                        <img id="userProfileImg" src="Images/user.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        
+                        <div class="profile-image-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.65); display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; opacity: 0; transition: all 0.3s ease; font-size: 13px; font-weight: 600; border-radius: 50%;">
+                            <i class="fa-solid fa-camera" style="font-size: 22px; margin-bottom: 5px; color: gold;"></i>
+                            <span>Upload Photo</span>
+                        </div>
+                    </div>
+
+                    <!-- Floating Pen Edit Badge -->
+                    <div class="profile-edit-badge" style="position: absolute; bottom: 5px; right: 5px; background: var(--gold-gradient); color: black; width: 34px; height: 34px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.5); border: 2px solid #050505; z-index: 5; transition: all 0.3s ease;">
+                        <i class="fa-solid fa-pen" style="font-size: 13px;"></i>
+                    </div>
+                    
+                    <input type="file" id="profileImageInput" accept="image/*" style="display: none;" />
 
                 </div>
 
@@ -191,6 +205,54 @@
         document.getElementById("profileEmail").innerText = localStorage.getItem("userEmail");
         document.getElementById("profilePhone").innerText = localStorage.getItem("userPhone");
         document.getElementById("profileLocation").innerText = localStorage.getItem("userLocation");
+
+        // Profile Picture Upload Handler
+        const storedImage = localStorage.getItem("userProfileImage");
+        const imgElement = document.getElementById("userProfileImg");
+        if (storedImage && imgElement) {
+            imgElement.src = storedImage;
+        }
+
+        const imageWrapper = document.getElementById("profileImageWrapper");
+        const imageInput = document.getElementById("profileImageInput");
+
+        if (imageWrapper && imageInput && imgElement) {
+            imageWrapper.addEventListener("click", () => {
+                imageInput.click();
+            });
+
+            // Custom mouse events for overlay hover visual stability
+            const overlay = imageWrapper.querySelector(".profile-image-overlay");
+            imageWrapper.addEventListener("mouseenter", () => {
+                overlay.style.opacity = "1";
+                const badge = imageWrapper.querySelector(".profile-edit-badge");
+                if (badge) {
+                    badge.style.transform = "scale(1.12)";
+                    badge.style.boxShadow = "0 6px 15px rgba(255, 215, 0, 0.3)";
+                }
+            });
+            imageWrapper.addEventListener("mouseleave", () => {
+                overlay.style.opacity = "0";
+                const badge = imageWrapper.querySelector(".profile-edit-badge");
+                if (badge) {
+                    badge.style.transform = "scale(1)";
+                    badge.style.boxShadow = "0 4px 10px rgba(0,0,0,0.5)";
+                }
+            });
+
+            imageInput.addEventListener("change", (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        imgElement.src = event.target.result;
+                        localStorage.setItem("userProfileImage", event.target.result);
+                        alert("Success! Your profile picture has been updated.");
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
     </script>
 
     <!-- Mobile Bottom Navigation -->
@@ -219,6 +281,7 @@
 
     <!-- Script for Authentication and Session Handling -->
     <script src="javascript/auth-guard.js"></script>
+    <script src="javascript/chatbot.js?v=3.5"></script>
 </body>
 
 </html>

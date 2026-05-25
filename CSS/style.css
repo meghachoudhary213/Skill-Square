@@ -41,8 +41,34 @@ a, button, input, textarea, select, .course-card, .stats-box, .faculty-card, .te
 }
 
 .navbar-brand {
-    color: gold !important;
     font-size: 28px;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, #ffe066 0%, #f3c623 30%, #d4af37 50%, #aa7c11 80%, #ffe066 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.35));
+    letter-spacing: 0.5px;
+    transition: var(--transition-premium) !important;
+    display: inline-block;
+    animation: goldShine 6s linear infinite;
+}
+
+@keyframes goldShine {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.navbar-brand:hover {
+    transform: translateY(-1px) scale(1.03);
+    filter: drop-shadow(0 4px 15px rgba(255, 224, 102, 0.6)) !important;
 }
 
 .nav-link {
@@ -3340,5 +3366,1469 @@ html {
 .toast-premium-close:hover {
     color: white !important;
 }
+
+/* Glassmorphic OTP Modal Styles */
+.otp-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    animation: fadeInOTP 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.otp-modal-box {
+    background: rgba(17, 17, 17, 0.85);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    animation: slideUpOTP 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.otp-modal-header h3 {
+    color: gold;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.otp-modal-header p {
+    color: var(--text-muted);
+    font-size: 14.5px;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.otp-inputs-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.otp-digit-input {
+    width: 55px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1.5px solid var(--glass-border) !important;
+    border-radius: 12px !important;
+    text-align: center;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: white !important;
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.otp-digit-input:focus {
+    border-color: gold !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.25) !important;
+    outline: none !important;
+}
+
+.otp-timer-container {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.otp-modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.otp-cancel-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.otp-cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.otp-verify-btn {
+    flex: 2;
+    background: var(--gold-gradient);
+    border: none;
+    color: black;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.otp-verify-btn:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.35);
+}
+
+@keyframes fadeInOTP {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUpOTP {
+    from { transform: translateY(40px) scale(0.95); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   SKILL SQUARE HIGH-FIDELITY SECURE CHECKOUT & PAYMENT MODAL STYLES
+   ========================================================================== */
+
+.payment-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.payment-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.payment-modal-content {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1.5px solid var(--luxury-gold);
+    width: 90%;
+    max-width: 650px;
+    border-radius: 28px;
+    padding: 35px;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(212, 175, 55, 0.2);
+    transform: translateY(40px) scale(0.95);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.payment-modal-overlay.active .payment-modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.payment-modal-close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+    transition: var(--transition-premium) !important;
+}
+
+.payment-modal-close:hover {
+    background: var(--luxury-gold);
+    color: black;
+    border-color: var(--luxury-gold);
+    transform: rotate(90deg) scale(1.08);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+.payment-modal-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.payment-modal-header h2 {
+    font-size: 28px;
+    font-weight: 800;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+}
+
+.payment-modal-header p {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 300;
+}
+
+/* Billing Summary Table */
+.billing-summary {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    border-radius: 18px;
+    padding: 20px 25px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(5px);
+}
+
+.billing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.billing-row.border-top {
+    border-top: 1px dashed rgba(255, 215, 0, 0.2) !important;
+    margin-top: 5px;
+    padding-top: 15px;
+}
+
+.billing-row.total {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--light-gold);
+}
+
+/* Payment Selector Tabs */
+.payment-tabs-container {
+    display: flex;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 5px;
+    margin-bottom: 25px;
+}
+
+.payment-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 12px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-premium) !important;
+}
+
+.payment-tab i {
+    font-size: 16px;
+}
+
+.payment-tab:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.payment-tab.active {
+    background: var(--gold-gradient);
+    color: black !important;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25);
+}
+
+/* Panel Layouts */
+.payment-panel {
+    display: none;
+    animation: fadeInPanel 0.4s ease;
+}
+
+.payment-panel.active {
+    display: block;
+}
+
+@keyframes fadeInPanel {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bank Grid Selection */
+.bank-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.bank-option {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    padding: 14px;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: var(--transition-premium) !important;
+}
+
+.bank-option i {
+    color: var(--luxury-gold);
+    font-size: 18px;
+}
+
+.bank-option:hover {
+    border-color: var(--luxury-gold);
+    background: rgba(212, 175, 55, 0.05);
+    transform: translateY(-2px);
+}
+
+.bank-option.selected {
+    border-color: var(--luxury-gold);
+    background: var(--gold-gradient);
+    color: black !important;
+}
+
+.bank-option.selected i {
+    color: black;
+}
+
+.payment-select {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    transition: var(--transition-premium) !important;
+}
+
+.payment-select:focus {
+    border-color: var(--luxury-gold) !important;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.2) !important;
+}
+
+/* Card Inputs Row */
+.card-row-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.payment-input-group {
+    margin-bottom: 20px;
+}
+
+.payment-input-group label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.payment-input-group input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    padding: 14px 16px !important;
+    border-radius: 12px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    outline: none !important;
+    transition: var(--transition-premium) !important;
+}
+
+.payment-input-group input:focus {
+    border-color: var(--luxury-gold) !important;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.25) !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Premium UPI Pulse QR Layout */
+.upi-qr-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px dashed rgba(255, 215, 0, 0.25);
+    border-radius: 16px;
+}
+
+.qr-visual-container {
+    width: 220px;
+    height: 220px;
+    background: #0f0b1e;
+    border-radius: 18px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 0 25px rgba(106, 27, 154, 0.4), 0 0 15px rgba(255, 215, 0, 0.1);
+    margin-bottom: 15px;
+    overflow: hidden;
+    border: 1.5px solid rgba(255, 215, 0, 0.2);
+}
+
+.qr-laser-beam {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    box-shadow: 0 0 10px #ffd700;
+    animation: qrScanBeam 3s linear infinite;
+    z-index: 2;
+}
+
+@keyframes qrScanBeam {
+    0% { top: 0%; }
+    50% { top: 100%; }
+    100% { top: 0%; }
+}
+
+.qr-visual-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.upi-scan-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* Pay Now Action Button */
+.pay-now-btn {
+    width: 100%;
+    background: var(--gold-gradient) !important;
+    color: black !important;
+    border: none !important;
+    padding: 16px !important;
+    font-size: 16.5px !important;
+    font-weight: 750 !important;
+    border-radius: 14px !important;
+    cursor: pointer !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.2) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-premium) !important;
+    margin-top: 15px;
+}
+
+.pay-now-btn:hover {
+    background: white !important;
+    color: black !important;
+    transform: translateY(-3px) scale(1.01) !important;
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4) !important;
+}
+
+/* Processing Secure Payment Loader Overlay */
+.payment-processing-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.98);
+    border-radius: 28px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    animation: fadeInOverlay 0.4s ease;
+}
+
+.payment-processing-loader.active {
+    display: flex;
+}
+
+.luxury-spinner-outer {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 25px;
+}
+
+.luxury-spinner-inner {
+    width: 100%;
+    height: 100%;
+    border: 3.5px solid rgba(255, 215, 0, 0.08);
+    border-top: 3.5px solid var(--luxury-gold);
+    border-radius: 50%;
+    animation: spinRotate 1.2s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
+}
+
+.luxury-spinner-ring {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    border: 2px solid transparent;
+    border-bottom: 2px solid var(--light-gold);
+    border-radius: 50%;
+    animation: spinRotateOpposite 2s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes spinRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spinRotateOpposite {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.payment-loading-text {
+    font-size: 19px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+}
+
+.payment-loading-desc {
+    color: var(--text-muted);
+    font-size: 14.5px;
+    text-align: center;
+    max-width: 80%;
+    line-height: 1.6;
+}
+
+/* Payment Success Overlay Checkmark Animation */
+.payment-success-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 8, 8, 0.99);
+    border-radius: 28px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 12;
+    animation: fadeInOverlay 0.5s ease;
+}
+
+.payment-success-overlay.active {
+    display: flex;
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Beautiful Animated Checkmark */
+.checkmark-circle-success {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 215, 0, 0.05);
+    border: 3px solid var(--luxury-gold);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.35);
+    position: relative;
+    margin-bottom: 25px;
+    animation: bounceSuccess 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.checkmark-circle-success i {
+    color: #ffd700;
+    font-size: 42px;
+    animation: checkScaleIn 0.5s 0.6s both ease-out;
+}
+
+@keyframes bounceSuccess {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes checkScaleIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.success-gold-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+}
+
+.success-gold-desc {
+    color: var(--text-muted);
+    font-size: 15px;
+    text-align: center;
+    line-height: 1.7;
+    max-width: 80%;
+    margin-bottom: 30px;
+}
+
+.success-redirect-badge {
+    background: rgba(255, 215, 0, 0.06);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 13.5px;
+    color: var(--light-gold);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.success-redirect-badge i {
+    animation: spinRotate 1.5s linear infinite;
+}
+
+/* Custom premium back to courses floating button */
+.premium-back-btn {
+    position: absolute;
+    top: 35px;
+    left: 45px;
+    color: var(--luxury-gold) !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    padding: 8px 18px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-premium) !important;
+}
+
+.premium-back-btn:hover {
+    background: var(--gold-gradient);
+    color: black !important;
+    border-color: var(--luxury-gold);
+    box-shadow: 0 6px 18px rgba(255, 215, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.premium-back-btn i {
+    transition: var(--transition-premium) !important;
+}
+
+.premium-back-btn:hover i {
+    transform: translateX(-4px);
+    color: black !important;
+}
+
+/* DYNAMIC COURSE STYLES FOR STUDENTS */
+.enrolled-courses-header {
+    border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    color: gold;
+    font-weight: 700;
+}
+
+.empty-enrollment-box {
+    text-align: center;
+    padding: 50px 30px;
+    background: var(--glass-bg);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.empty-enrollment-box i {
+    font-size: 45px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.empty-enrollment-box p {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    line-height: 1.7;
+}
+
+.empty-enrollment-box a {
+    text-decoration: none;
+}
+
+.empty-enrollment-btn {
+    background: var(--gold-gradient);
+    color: black;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14.5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+    transition: var(--transition-premium) !important;
+}
+
+.empty-enrollment-btn:hover {
+    background: white;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Luxury enrolled card display widgets */
+.student-course-card {
+    background: var(--glass-bg);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition-premium) !important;
+    backdrop-filter: blur(10px);
+}
+
+.student-course-card:hover {
+    border-color: var(--luxury-gold);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.12);
+}
+
+.student-course-card-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.student-course-card-top i {
+    font-size: 26px;
+    color: var(--luxury-gold);
+    background: rgba(255, 215, 0, 0.05);
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.student-course-card-top h3 {
+    font-size: 19px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0;
+}
+
+.student-course-details {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.student-course-details div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.student-course-details div i {
+    color: var(--luxury-gold);
+    width: 14px;
+    text-align: center;
+}
+
+/* Luxury custom progress bar */
+.luxury-progress-widget {
+    margin-bottom: 22px;
+}
+
+.luxury-progress-widget-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.luxury-progress-bar-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.luxury-progress-bar-fill {
+    height: 100%;
+    background: var(--gold-gradient);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.resume-learning-btn {
+    width: 100%;
+    background: var(--gold-gradient);
+    border: none;
+    color: black;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13.5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: var(--transition-premium) !important;
+}
+
+.resume-learning-btn:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 215, 0, 0.35);
+}
+
+.resume-learning-btn i {
+    transition: var(--transition-premium) !important;
+}
+
+.resume-learning-btn:hover i {
+    transform: translateX(3px);
+}
+
+/* ADMIN REVENUE CARD AND METRICS STYLES */
+.admin-metric-revenue {
+    border-color: #ffd700 !important;
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(212, 175, 55, 0.04)) !important;
+    box-shadow: 0 12px 30px rgba(255, 215, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.admin-metric-revenue h2 {
+    color: #ffd700 !important;
+    font-weight: 800;
+}
+
+/* Custom premium responsive tables */
+.custom-admin-table {
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    background: rgba(10, 10, 10, 0.6) !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+
+.custom-admin-table th {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    color: var(--luxury-gold) !important;
+    font-weight: 700 !important;
+    font-size: 14.5px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    padding: 16px 20px !important;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.15) !important;
+}
+
+.custom-admin-table td {
+    padding: 16px 20px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    font-size: 14.5px !important;
+}
+
+.custom-admin-table tr:hover td {
+    background-color: rgba(255, 215, 0, 0.02) !important;
+}
+
+/* Custom premium delete action buttons */
+.btn-delete-student {
+    background: rgba(255, 75, 75, 0.08) !important;
+    border: 1px solid rgba(255, 75, 75, 0.25) !important;
+    color: #ff5252 !important;
+    padding: 6px 14px !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: var(--transition-premium) !important;
+}
+
+.btn-delete-student:hover {
+    background: #ff5252 !important;
+    color: white !important;
+    border-color: #ff5252 !important;
+    box-shadow: 0 4px 15px rgba(255, 82, 82, 0.35) !important;
+    transform: translateY(-1px);
+}
+
+/* Premium Custom Confirmation Overlay Modal */
+.confirm-premium-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.confirm-premium-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.confirm-premium-content {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1.5px solid var(--luxury-gold);
+    border-radius: 24px;
+    width: 90%;
+    max-width: 420px;
+    padding: 35px 30px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.2);
+    transform: translateY(30px) scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.confirm-premium-overlay.active .confirm-premium-content {
+    transform: translateY(0) scale(1);
+}
+
+.confirm-premium-icon {
+    font-size: 45px;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.confirm-premium-content h3 {
+    color: white;
+    font-weight: 700;
+    font-size: 21px;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+}
+
+.confirm-premium-content p {
+    color: var(--text-muted);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+.confirm-premium-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.confirm-premium-btn {
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 650;
+    font-size: 14.5px;
+    cursor: pointer;
+    transition: var(--transition-premium) !important;
+}
+
+.confirm-premium-btn.cancel {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    flex: 1;
+}
+
+.confirm-premium-btn.cancel:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.confirm-premium-btn.confirm {
+    background: var(--gold-gradient);
+    border: none;
+    color: black;
+    font-weight: 750;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
+    flex: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.confirm-premium-btn.confirm:hover {
+    background: white;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.35);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   SKILL SQUARE HIGH-FIDELITY LUXURY AI CHATBOT SYSTEM STYLES
+   ========================================================================== */
+
+.ai-chat-launcher {
+    position: fixed;
+    bottom: 85px;
+    right: 25px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: var(--gold-gradient);
+    color: black !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.35);
+    z-index: 2500;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    border: 2px solid #050505;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0;
+}
+
+.ai-chat-launcher::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--luxury-gold);
+    animation: launcherPulse 2s linear infinite;
+    opacity: 0.8;
+    z-index: 1;
+}
+
+@keyframes launcherPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+.ai-chat-launcher:hover {
+    width: 145px;
+    border-radius: 30px;
+    padding: 0 18px;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+    background: white !important;
+}
+
+.ai-chat-launcher i {
+    font-size: 24px;
+    color: black !important;
+    transition: transform 0.5s ease;
+    z-index: 2;
+}
+
+.ai-chat-launcher:hover i {
+    transform: rotate(360deg);
+}
+
+.ai-launcher-text {
+    font-size: 13.5px;
+    font-weight: 750;
+    color: black !important;
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 0;
+    z-index: 2;
+}
+
+.ai-chat-launcher:hover .ai-launcher-text {
+    opacity: 1;
+    max-width: 80px;
+    margin-left: 8px;
+}
+
+.ai-chat-panel {
+    position: fixed;
+    bottom: 155px;
+    right: 25px;
+    width: 370px;
+    height: 500px;
+    border-radius: 24px;
+    background: rgba(10, 10, 10, 0.85);
+    border: 1.5px solid var(--luxury-gold);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95), 0 0 30px rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 2500;
+    animation: slideUpChatPanel 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUpChatPanel {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.ai-chat-panel.active {
+    display: flex;
+}
+
+.ai-chat-header {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 16px 20px;
+    border-bottom: 1.5px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ai-chat-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--gold-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.25);
+}
+
+.ai-chat-avatar i {
+    color: black;
+    font-size: 16px;
+}
+
+.ai-chat-header-text h4 {
+    color: white;
+    font-size: 15.5px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.ai-chat-header-text span {
+    color: var(--luxury-gold);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.ai-chat-header-text span::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #00ff66;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #00ff66;
+}
+
+.ai-chat-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 20px;
+    cursor: pointer;
+    transition: var(--transition-premium) !important;
+}
+
+.ai-chat-close:hover {
+    color: white;
+    transform: rotate(90deg);
+}
+
+.ai-chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Chat bubble styling */
+.ai-bubble {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    position: relative;
+    animation: bubblePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.15) both;
+}
+
+@keyframes bubblePop {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.ai-bubble.bot {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.95);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.ai-bubble.user {
+    background: var(--gold-gradient);
+    color: black !important;
+    font-weight: 550;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.15);
+}
+
+/* Chat Input Section */
+.ai-chat-footer {
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border-top: 1.5px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ai-chat-input-wrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ai-chat-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    padding: 12px 40px 12px 16px !important;
+    border-radius: 30px !important;
+    font-size: 14px !important;
+    outline: none !important;
+    transition: var(--transition-premium) !important;
+}
+
+.ai-chat-input:focus {
+    border-color: var(--luxury-gold) !important;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.25) !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Chat Action Buttons */
+.ai-chat-action-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition-premium) !important;
+}
+
+.ai-chat-action-btn:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: var(--luxury-gold);
+    color: var(--light-gold);
+    transform: translateY(-2px);
+}
+
+.ai-chat-action-btn.active {
+    background: var(--gold-gradient);
+    color: black !important;
+    border-color: var(--luxury-gold);
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+/* Microphone active listening animation pulse */
+.ai-chat-action-btn.listening {
+    background: #ff3333 !important;
+    color: white !important;
+    border-color: #ff3333 !important;
+    box-shadow: 0 0 15px #ff3333;
+    animation: micPulse 1.2s infinite;
+}
+
+@keyframes micPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+.ai-chat-send {
+    background: var(--gold-gradient) !important;
+    color: black !important;
+    border: none !important;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.15);
+    transition: var(--transition-premium) !important;
+}
+
+.ai-chat-send:hover {
+    background: white !important;
+    transform: scale(1.08);
+    box-shadow: 0 6px 15px rgba(255, 215, 0, 0.35);
+}
+
+.ai-chat-send i {
+    font-size: 14px;
+}
+
+/* Dynamic UPI Scanner and Automatic Payment Detection Styles */
+.upi-live-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(17, 17, 17, 0.95);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    padding: 10px 20px;
+    border-radius: 24px;
+    margin-bottom: 18px;
+    width: 100%;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.upi-live-status .status-text {
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.pulse-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.pulse-dot.amber {
+    background-color: #ffd700;
+    box-shadow: 0 0 10px #ffd700;
+    animation: pulseAmber 1.4s infinite;
+}
+
+.pulse-dot.blue {
+    background-color: #00bcd4;
+    box-shadow: 0 0 10px #00bcd4;
+    animation: pulseBlue 1.4s infinite;
+}
+
+.pulse-dot.green {
+    background-color: #4caf50;
+    box-shadow: 0 0 10px #4caf50;
+    animation: pulseGreen 1.4s infinite;
+}
+
+@keyframes pulseAmber {
+    0% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 4px #ffd700; }
+    50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 14px #ffd700; }
+    100% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 4px #ffd700; }
+}
+
+@keyframes pulseBlue {
+    0% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 4px #00bcd4; }
+    50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 14px #00bcd4; }
+    100% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 4px #00bcd4; }
+}
+
+@keyframes pulseGreen {
+    0% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 4px #4caf50; }
+    50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 14px #4caf50; }
+    100% { transform: scale(0.9); opacity: 0.6; box-shadow: 0 0 4px #4caf50; }
+}
+
+
 
 

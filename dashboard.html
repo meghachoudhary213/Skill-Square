@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -136,9 +136,9 @@
 
                             <i class="fa-solid fa-book-open card-icon"></i>
 
-                            <h2>6</h2>
+                            <h2 id="enrolledCoursesCount">0</h2>
 
-                            <p>Courses</p>
+                            <p>Courses Enrolled</p>
 
                         </div>
 
@@ -187,54 +187,44 @@
 
                 <!-- COURSES -->
 
-                <div class="courses-box mt-5">
-
-                    <h2>
-
-                        My Courses
-
+                <!-- DYNAMIC ENROLLED COURSES SECTION -->
+                <div class="courses-box mt-5" id="enrolledCoursesSection" style="display: none; border: none; background: transparent; padding: 0; margin-bottom: 50px;">
+                    <h2 class="enrolled-courses-header">
+                        Your Active Enrollments
                     </h2>
-
-                    <div class="row g-4 mt-3">
-
-                        <div class="col-lg-4">
-
-                            <div class="course-item">
-
-                                <i class="fa-solid fa-code"></i>
-
-                                <h4>Web Development</h4>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-4">
-
-                            <div class="course-item">
-
-                                <i class="fa-brands fa-python"></i>
-
-                                <h4>Python</h4>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-4">
-
-                            <div class="course-item">
-
-                                <i class="fa-solid fa-chart-line"></i>
-
-                                <h4>Data Analytics</h4>
-
-                            </div>
-
-                        </div>
-
+                    <div class="row g-4 mt-3" id="enrolledCoursesContainer">
+                        <!-- Populated dynamically via JS -->
                     </div>
+                </div>
 
+                <!-- WE ARE PROVIDED (Coaching Highlights) -->
+                <div class="courses-box mt-5">
+                    <h2 style="color: gold; font-weight: 700; border-bottom: 2px solid rgba(255, 215, 0, 0.2); padding-bottom: 12px; margin-bottom: 25px;">
+                        We Are Provided
+                    </h2>
+                    <div class="row g-4 mt-3">
+                        <div class="col-lg-4">
+                            <div class="dashboard-card" style="padding: 35px 25px; background: rgba(17, 17, 17, 0.75); border: 1.5px solid rgba(255, 215, 0, 0.15); border-radius: 18px; text-align: center; backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); height: 100%; transition: all 0.4s ease; cursor: default;" onmouseover="this.style.borderColor='#ffd700'; this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='rgba(255, 215, 0, 0.15)'; this.style.transform='translateY(0)';">
+                                <i class="fa-solid fa-graduation-cap" style="font-size: 40px; color: gold; margin-bottom: 20px; display: inline-block;"></i>
+                                <h4 style="font-weight: 700; color: white; margin-bottom: 12px;">Expert Mentorship</h4>
+                                <p style="font-size: 14.5px; color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin-bottom: 0;">Learn directly from certified industry professionals with extensive real-world coaching experience.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="dashboard-card" style="padding: 35px 25px; background: rgba(17, 17, 17, 0.75); border: 1.5px solid rgba(255, 215, 0, 0.15); border-radius: 18px; text-align: center; backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); height: 100%; transition: all 0.4s ease; cursor: default;" onmouseover="this.style.borderColor='#ffd700'; this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='rgba(255, 215, 0, 0.15)'; this.style.transform='translateY(0)';">
+                                <i class="fa-solid fa-laptop-code" style="font-size: 40px; color: gold; margin-bottom: 20px; display: inline-block;"></i>
+                                <h4 style="font-weight: 700; color: white; margin-bottom: 12px;">Practical Learning</h4>
+                                <p style="font-size: 14.5px; color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin-bottom: 0;">Work on live projects, practical coding assignments, and real case studies to master hands-on skills.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="dashboard-card" style="padding: 35px 25px; background: rgba(17, 17, 17, 0.75); border: 1.5px solid rgba(255, 215, 0, 0.15); border-radius: 18px; text-align: center; backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); height: 100%; transition: all 0.4s ease; cursor: default;" onmouseover="this.style.borderColor='#ffd700'; this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='rgba(255, 215, 0, 0.15)'; this.style.transform='translateY(0)';">
+                                <i class="fa-solid fa-briefcase" style="font-size: 40px; color: gold; margin-bottom: 20px; display: inline-block;"></i>
+                                <h4 style="font-weight: 700; color: white; margin-bottom: 12px;">100% Placement Support</h4>
+                                <p style="font-size: 14.5px; color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin-bottom: 0;">Get complete career assistance, resume building, and mock interviews with top hiring partners.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
         </div>
@@ -267,6 +257,8 @@
 
     <!-- Script for Authentication and Session Handling -->
     <script src="javascript/auth-guard.js"></script>
+    <script src="javascript/dashboard-enrollments.js"></script>
+    <script src="javascript/chatbot.js?v=3.5"></script>
 </body>
 
 </html>

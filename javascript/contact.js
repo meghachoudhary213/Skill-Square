@@ -17,13 +17,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const name = document.getElementById("contactName").value.trim();
             const email = document.getElementById("contactEmail").value.trim();
+            const countryCode = document.getElementById("contactCountry").value;
+            const phone = document.getElementById("contactPhone").value.trim();
             const subject = document.getElementById("contactSubject").value.trim();
             const message = document.getElementById("contactMessage").value.trim();
 
-            if (!name || !email || !subject || !message) {
+            if (!name || !email || !phone || !subject || !message) {
                 showNotification("Please fill in all fields.", "error");
                 return;
             }
+
+            // Mobile number country-wise validation
+            const cleanPhone = phone.replace(/\D/g, "");
+            let expectedLength = 10;
+            if (countryCode === "+61" || countryCode === "+971") {
+                expectedLength = 9;
+            }
+
+            if (cleanPhone.length !== expectedLength) {
+                showNotification(`Mobile number for ${countryCode} must be exactly ${expectedLength} digits.`, "error");
+                return;
+            }
+
+            const combinedPhone = `${countryCode} ${cleanPhone}`;
 
             try {
                 // Set loading button state
@@ -37,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({ name, email, subject, message })
+                    body: JSON.stringify({ name, email, phone: combinedPhone, subject, message })
                 });
 
                 const data = await response.json();
@@ -58,6 +74,40 @@ document.addEventListener("DOMContentLoaded", () => {
                 showNotification("Could not connect to the backend server. Please verify the backend is running!", "error");
             }
         });
+    }
+
+    // Dynamic phone constraint handling based on selected country code
+    const contactCountry = document.getElementById("contactCountry");
+    const contactPhone = document.getElementById("contactPhone");
+
+    if (contactCountry && contactPhone) {
+        function updatePhoneConstraints() {
+            const countryCode = contactCountry.value;
+            let expectedLength = 10;
+            if (countryCode === "+61" || countryCode === "+971") {
+                expectedLength = 9;
+            }
+            contactPhone.placeholder = `Mobile Number (${expectedLength} digits)`;
+            contactPhone.maxLength = expectedLength;
+            
+            // Clean up existing characters if they exceed the new max length
+            const cleanVal = contactPhone.value.replace(/\D/g, "");
+            if (cleanVal.length > expectedLength) {
+                contactPhone.value = cleanVal.slice(0, expectedLength);
+            } else {
+                contactPhone.value = cleanVal;
+            }
+        }
+
+        contactCountry.addEventListener("change", updatePhoneConstraints);
+        
+        // Dynamic input sanitization (only allow digits)
+        contactPhone.addEventListener("input", function() {
+            this.value = this.value.replace(/\D/g, "");
+        });
+
+        // Run once on load to initialize constraints
+        updatePhoneConstraints();
     }
 });
 
