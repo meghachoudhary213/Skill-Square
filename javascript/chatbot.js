@@ -1,3 +1,4 @@
+(function() {
 // Skill Square Luxury AI Assistant Chatbot
 // Fully self-contained text, voice-to-text, and vocal text-to-speech engine
 
@@ -407,26 +408,26 @@ All courses are certified and mentored by Aman Singh. GST (18%) is calculated dy
 
 if (window.aiChatbotInitialized) {
     console.log("Skill Square AI Chatbot already initialized. Skipping execution.");
-} else {
-    window.aiChatbotInitialized = true;
+    return;
+}
+window.aiChatbotInitialized = true;
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", () => {
-            // 1. Inject Chatbot Launcher & Panel HTML into DOM dynamically
-            injectChatbotDOM();
-
-            // 2. Chatbot Logic & Speech controllers
-            initChatbotSystem();
-
-            // 3. Inject Navigation Links dynamically into Header Navbar / Sidebars
-            injectNavigationLinks();
-        });
-    } else {
-        // DOM is already ready, inject immediately!
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. Inject Chatbot Launcher & Panel HTML into DOM dynamically
         injectChatbotDOM();
+
+        // 2. Chatbot Logic & Speech controllers
         initChatbotSystem();
+
+        // 3. Inject Navigation Links dynamically into Header Navbar / Sidebars
         injectNavigationLinks();
-    }
+    });
+} else {
+    // DOM is already ready, inject immediately!
+    injectChatbotDOM();
+    initChatbotSystem();
+    injectNavigationLinks();
 }
 
 function injectChatbotDOM() {
@@ -738,3 +739,4 @@ function initChatbotSystem() {
         window.speechSynthesis.speak(utterance);
     }
 }
+})();

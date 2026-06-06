@@ -124,6 +124,11 @@ function initAdminLogin() {
         } catch (error) {
             console.error("Admin Login Error:", error);
             alert("Failed to connect to the backend server. Make sure the server is running!");
+            const submitBtn = adminLoginForm.querySelector("button[type='submit']");
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Login As Admin";
+            }
         }
     });
 }

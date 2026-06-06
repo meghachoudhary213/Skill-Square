@@ -134,7 +134,7 @@ router.post("/send-otp", async (req, res) => {
     });
   } catch (error) {
     console.error("Send Registration OTP Error:", error);
-    res.status(500).json({ success: false, message: "Server error generating OTP" });
+    res.status(500).json({ success: false, message: "Server error generating OTP: " + error.message });
   }
 });
 
@@ -185,7 +185,7 @@ router.post("/send-forgot-otp", async (req, res) => {
     });
   } catch (error) {
     console.error("Send Forgot OTP Error:", error);
-    res.status(500).json({ success: false, message: "Server error generating OTP" });
+    res.status(500).json({ success: false, message: "Server error generating OTP: " + error.message });
   }
 });
 

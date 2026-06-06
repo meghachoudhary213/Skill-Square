@@ -420,7 +420,7 @@ function initFacultyEditableSocials() {
 
 // Load AI Chatbot automatically on all pages
 (function() {
-    if (document.getElementById("aiChatLauncher")) return;
+    if (document.getElementById("aiChatLauncher") || document.querySelector('script[src*="chatbot.js"]')) return;
     const script = document.createElement("script");
     script.src = "javascript/chatbot.js?v=" + new Date().getTime();
     document.body.appendChild(script);

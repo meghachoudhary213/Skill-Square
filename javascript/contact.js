@@ -69,8 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             } catch (error) {
                 console.error("Contact Form Submission Error:", error);
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = "Send Message";
+                const submitBtn = contactForm.querySelector("button[type='submit']");
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Send Message";
+                }
                 showNotification("Could not connect to the backend server. Please verify the backend is running!", "error");
             }
         });
