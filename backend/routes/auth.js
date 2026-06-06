@@ -11,15 +11,16 @@ const JWT_SECRET = process.env.JWT_SECRET || "skillsquare_secret_key_123";
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || "smtp.gmail.com",
-  port: parseInt(process.env.SMTP_PORT || "587"),
-  secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
+  // Default to secure SSL/TLS port 465 for production stability on cloud platforms like Render
+  port: parseInt(process.env.SMTP_PORT || "465"),
+  secure: process.env.SMTP_SECURE ? process.env.SMTP_SECURE === "true" : true, // true for 465
   auth: {
-    user: process.env.SMTP_USER || "",
-    pass: process.env.SMTP_PASS || "",
+    user: process.env.SMTP_USER || "megha20202002@gmail.com",
+    pass: process.env.SMTP_PASS || "gnahpwcsyczfuzsv",
   },
-  connectionTimeout: 5000, // 5 seconds
-  greetingTimeout: 5000,    // 5 seconds
-  socketTimeout: 5000,      // 5 seconds
+  connectionTimeout: 10000, // 10 seconds
+  greetingTimeout: 10000,
+  socketTimeout: 10000,
 });
 
 // Middleware to authenticate JWT
@@ -55,10 +56,10 @@ const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
 
-// Helper: Send OTP via Email (with graceful terminal console fallback)
+// Helper: Send OTP via Email (with absolute fallback configuration)
 const sendOTPEmail = async (email, otp) => {
   const mailOptions = {
-    from: `"Skill Square Security" <${process.env.SMTP_USER || "no-reply@skillsquare.com"}>`,
+    from: `"Skill Square Security" <${process.env.SMTP_USER || "megha20202002@gmail.com"}>`,
     to: email,
     subject: "Your OTP Verification Code - Skill Square",
     html: `
@@ -85,11 +86,6 @@ OTP Code:  ${otp}
 Timestamp: ${new Date().toLocaleTimeString()}
 ==================================================
   `);
-
-  if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.log("⚠️ SMTP credentials not found in env. Aborting.");
-    throw new Error("SMTP email credentials (SMTP_USER/SMTP_PASS) are not configured in your Render environment variables.");
-  }
 
   try {
     await transporter.sendMail(mailOptions);
