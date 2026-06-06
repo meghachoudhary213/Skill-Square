@@ -56,13 +56,9 @@ const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
 
-// Helper: Send OTP via Email (with absolute fallback configuration)
+// Helper: Send OTP via Email (with HTTP APIs and SMTP fallback)
 const sendOTPEmail = async (email, otp) => {
-  const mailOptions = {
-    from: `"Skill Square Security" <${process.env.SMTP_USER || "megha20202002@gmail.com"}>`,
-    to: email,
-    subject: "Your OTP Verification Code - Skill Square",
-    html: `
+  const mailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 12px; background-color: #ffffff;">
         <h2 style="color: #f1c40f; text-align: center; margin-bottom: 30px;">Skill Square Verification Code</h2>
         <p style="font-size: 16px; color: #333333; line-height: 1.6;">Hello,</p>
@@ -74,8 +70,7 @@ const sendOTPEmail = async (email, otp) => {
         <hr style="border: 0; border-top: 1px solid #eeeeee; margin: 30px 0;" />
         <p style="font-size: 12px; color: #95a5a6; text-align: center; line-height: 1.6;">&copy; ${new Date().getFullYear()} Skill Square. All rights reserved.</p>
       </div>
-    `,
-  };
+  `;
 
   // Always log to terminal for immediate development bypass accessibility
   console.log(`
@@ -86,6 +81,78 @@ OTP Code:  ${otp}
 Timestamp: ${new Date().toLocaleTimeString()}
 ==================================================
   `);
+
+  // 1. Check if Resend HTTP API Key is configured
+  if (process.env.RESEND_API_KEY) {
+    console.log("📨 Sending email via Resend HTTP API...");
+    try {
+      const response = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: process.env.EMAIL_FROM || "Skill Square Security <onboarding@resend.dev>",
+          to: email,
+          subject: "Your OTP Verification Code - Skill Square",
+          html: mailHtml,
+        }),
+      });
+      if (response.ok) {
+        console.log(`✉️ OTP email sent successfully to ${email} via Resend HTTP API`);
+        return true;
+      } else {
+        const data = await response.json();
+        throw new Error(data.message || JSON.stringify(data));
+      }
+    } catch (error) {
+      console.error("❌ Resend HTTP API error:", error.message);
+      throw new Error("Resend Mail Delivery Failed: " + error.message);
+    }
+  }
+
+  // 2. Check if SendGrid HTTP API Key is configured
+  if (process.env.SENDGRID_API_KEY) {
+    console.log("📨 Sending email via SendGrid HTTP API...");
+    try {
+      const response = await fetch("https://api.sendgrid.com/v3/mail/send", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.SENDGRID_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          personalizations: [{ to: [{ email }] }],
+          from: {
+            email: process.env.EMAIL_FROM || "no-reply@skillsquare.com",
+            name: "Skill Square Security",
+          },
+          subject: "Your OTP Verification Code - Skill Square",
+          content: [{ type: "text/html", value: mailHtml }],
+        }),
+      });
+      if (response.ok) {
+        console.log(`✉️ OTP email sent successfully to ${email} via SendGrid HTTP API`);
+        return true;
+      } else {
+        const data = await response.json();
+        throw new Error(data.message || JSON.stringify(data));
+      }
+    } catch (error) {
+      console.error("❌ SendGrid HTTP API error:", error.message);
+      throw new Error("SendGrid Mail Delivery Failed: " + error.message);
+    }
+  }
+
+  // 3. Fallback to standard Nodemailer SMTP
+  console.log("📨 Sending email via traditional SMTP...");
+  const mailOptions = {
+    from: `"Skill Square Security" <${process.env.SMTP_USER || "megha20202002@gmail.com"}>`,
+    to: email,
+    subject: "Your OTP Verification Code - Skill Square",
+    html: mailHtml,
+  };
 
   try {
     await transporter.sendMail(mailOptions);
