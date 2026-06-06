@@ -87,8 +87,8 @@ Timestamp: ${new Date().toLocaleTimeString()}
   `);
 
   if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.log("⚠️ SMTP credentials not found in env. Falling back to console OTP logging.");
-    return false; // Indicated mock fallback
+    console.log("⚠️ SMTP credentials not found in env. Aborting.");
+    throw new Error("SMTP email credentials (SMTP_USER/SMTP_PASS) are not configured in your Render environment variables.");
   }
 
   try {
@@ -97,8 +97,7 @@ Timestamp: ${new Date().toLocaleTimeString()}
     return true;
   } catch (error) {
     console.error("❌ Failed to send OTP email via SMTP:", error.message);
-    console.log("⚠️ Falling back to console OTP logging.");
-    return false;
+    throw new Error("SMTP Mail Delivery Failed: " + error.message);
   }
 };
 
